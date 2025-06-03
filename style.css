@@ -1,0 +1,879 @@
+/* Basic Reset & Typography */
+:root {
+    --primary-color: #007bff; /* A vibrant blue for main elements */
+    --accent-color: #6a1b9a; /* A deep purple for AI focus and key CTAs */
+    --dark-bg: #1a202c; /* Dark background */
+    --light-bg: #f8f9fa; /* Light background */
+    --text-color-dark: #333;
+    --text-color-light: #fefefe;
+    --heading-font: 'Montserrat', sans-serif;
+    --body-font: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--body-font);
+    line-height: 1.6;
+    color: var(--text-color-dark);
+    overflow-x: hidden; /* Prevent horizontal scroll from AOS */
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--heading-font);
+    color: var(--dark-bg);
+    margin-bottom: 1rem;
+}
+
+h1 { font-size: 3.8rem; line-height: 1.1; }
+h2 { font-size: 2.8rem; }
+h3 { font-size: 2rem; }
+
+p { margin-bottom: 1rem; }
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: var(--accent-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border-radius: 50px; /* Pill shape for modern look */
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1.05rem;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: 0 8px 20px rgba(106, 27, 154, 0.3); /* Purple shadow */
+}
+
+.btn-primary:hover {
+    background-color: #8c3bbd; /* Lighter purple */
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(106, 27, 154, 0.4);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 0.8rem 1.8rem;
+    border-radius: 5px;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-submit {
+    background-color: var(--primary-color);
+    color: white;
+    width: 100%;
+}
+.btn-submit:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+}
+
+.section {
+    padding: 6rem 0;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 1rem;
+    color: var(--dark-bg);
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 5px;
+    background-color: var(--accent-color); /* AI accent color */
+    border-radius: 3px;
+}
+.section-subtitle {
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bg-dark {
+    background-color: var(--dark-bg);
+    color: var(--text-color-light);
+}
+.bg-light {
+    background-color: var(--light-bg);
+}
+.text-white {
+    color: var(--text-color-light);
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    overflow: hidden;
+    text-align: center;
+}
+
+.hero-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.hero-video-bg .bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4) grayscale(0.2); /* Darken and desaturate video */
+}
+
+.hero-content {
+    max-width: calc(100% - 40px); /* This gives it 15px padding on each side implicitly */
+    margin: 0 auto; /* Ensures it's centered */
+    padding: 0; /* REMOVE any conflicting padding from desktop styles here */
+    text-align: center; /* Make absolutely sure text is centered */
+}
+.hero-content .headline {
+    font-size: 4em; /* Make it even smaller for very narrow screens */
+    line-height: 1.15; /* Adjust line height to prevent overlap */
+    word-break: break-word; /* Allows long words to break to next line */
+    color: #ffffff;
+}
+.hero-content .headline #typed-text {
+    color: var(--accent-color); /* Highlight AI word */
+}
+
+.hero-content .sub-headline {
+    font-size: 0.9em; /* Smaller sub-headline */
+    line-height: 1.4;
+    margin-bottom: 3rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+}
+
+.hero-trust-logos {
+    margin-top: 4em;
+    overflow: hidden; 
+}
+
+.hero-trust-logos p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.logo-carousel {
+    display: flex;
+    white-space: nowrap; 
+    animation: scrollLogos 25s linear infinite; /* Increased duration for smoother loop */
+}
+.logo-carousel img {
+    height: 55px; 
+    filter: grayscale(100%) brightness(180%); /* Lighter for dark background */
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    flex-shrink: 0; 
+    margin-right: 3rem; 
+}
+.logo-carousel img:hover {
+    filter: grayscale(0%) brightness(100%);
+    opacity: 1;
+}
+
+/* Keyframe for continuous logo scroll */
+@keyframes scrollLogos {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); } /* Scroll exactly halfway to loop duplicated logos */
+}
+
+
+/* Scroll Down Arrow */
+.scroll-down-arrow {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.scroll-down-arrow span {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(45deg);
+    margin-bottom: 5px;
+    animation: bounce 1.5s infinite;
+}
+
+.scroll-down-arrow span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.scroll-down-arrow span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) rotate(45deg);
+    }
+    40% {
+        transform: translateY(-10px) rotate(45deg);
+    }
+    60% {
+        transform: translateY(-5px) rotate(45deg);
+    }
+}
+
+/* AI Advantage Section */
+.ai-advantage .section-title {
+    color: var(--accent-color);
+}
+.ai-points-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+    margin-bottom: 4rem;
+}
+
+.ai-point-item {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    text-align: left;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border-bottom: 5px solid var(--accent-color); /* Subtle accent */
+}
+
+.ai-point-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+.ai-point-item img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 1.5rem;
+}
+
+.ai-point-item h3 {
+    font-size: 1.7rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+.ai-point-item p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.ai-hero-image {
+    margin-top: 5rem;
+    text-align: center;
+}
+.ai-hero-image img {
+    max-width: 90%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+.image-caption {
+    margin-top: 1.5rem;
+    font-style: italic;
+    color: #777;
+    font-size: 1rem;
+}
+
+
+/* Services Section */
+.services .section-title {
+    color: var(--primary-color);
+}
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.service-item {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content to top */
+    align-items: center;
+}
+
+.service-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.service-item .service-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light-bg);
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+.service-item:hover .service-icon {
+    background-color: var(--accent-color);
+}
+.service-item .service-icon img {
+    width: 100px;
+    height: 100px;
+    filter: brightness(1); 
+    transition: filter 0.3s ease;
+}
+.service-item:hover .service-icon img {
+    filter: brightness(1); 
+}
+
+.service-item h3 {
+    font-size: 1.7rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+.service-item p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* Case Studies Section */
+.case-studies .section-title {
+    color: var(--dark-bg);
+}
+.case-study-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.case-study-card {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    border-top: 5px solid var(--primary-color);
+}
+.case-study-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.15);
+}
+
+.case-study-card img {
+    width: 100%;
+    height: 250px; /* Slightly taller images */
+    object-fit: cover;
+}
+
+.case-study-card .card-content {
+    padding: 1.8rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.case-study-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+    color: var(--dark-bg);
+}
+.case-study-card .result {
+    font-size: 1.25rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+.case-study-card .result span {
+    color: var(--accent-color); /* Highlight results with accent color */
+    font-weight: 700;
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: 6rem 0;
+    background-color: var(--dark-bg); /* Dark background */
+}
+.testimonials .section-title {
+    color: var(--text-color-light);
+}
+.testimonial-carousel {
+    display: flex; /* Use flexbox for carousel items */
+    gap: 2rem;
+    margin-top: 3rem;
+    overflow-x: auto; /* Enable horizontal scrolling if items exceed container */
+    scroll-snap-type: x mandatory; /* Snap to items */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    padding-bottom: 1rem; /* Space for scrollbar */
+}
+.testimonial-item {
+    flex: 0 0 45%; /* Show two items per row, adjust as needed */
+    max-width: 45%; /* Ensures it takes about half the width */
+    background-color: #333; /* Slightly lighter dark background */
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    text-align: left;
+    color: var(--text-color-light);
+    scroll-snap-align: start; /* Align to start of item */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
+
+.testimonial-item .client-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    border: 3px solid var(--accent-color); /* Accent border */
+}
+
+.testimonial-item blockquote {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.9);
+}
+.testimonial-item cite {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+
+/* Contact Form Section */
+.contact-form {
+    padding: 6rem 0;
+    background-color: var(--light-bg); /* Use light background for contrast */
+}
+.contact-form .section-title {
+    color: var(--dark-bg);
+}
+.contact-form .section-subtitle {
+    color: #666;
+}
+
+.contact-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 3rem auto 0;
+    background-color: white; /* White background for form */
+    padding: 3.5rem;
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+    color: var(--dark-bg);
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1.1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fefefe;
+    color: var(--dark-bg);
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #aaa;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+}
+
+.privacy-note {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 1rem;
+}
+.privacy-note a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background-color: #111;
+    color: #bbb;
+    padding: 4rem 0 2rem;
+    font-size: 0.95rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2.5rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid #333;
+}
+
+.footer-logo {
+    max-width: 180px; /* Slightly larger logo */
+    margin-bottom: 1rem;
+    filter: brightness(2.5); /* Make logo lighter for dark background */
+}
+
+.footer-col h4 {
+    color: white;
+    font-size: 1.25rem;
+    margin-bottom: 1.2rem;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 0.9rem;
+}
+
+.footer-col ul li a {
+    color: #bbb;
+    transition: color 0.3s ease;
+}
+.footer-col ul li a:hover {
+    color: white;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 1rem;
+}
+.social-icons a img {
+    width: 35px; /* Slightly larger icons */
+    height: 35px;
+    filter: brightness(2.5); /* Lighten social icons for dark background */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.social-icons a img:hover {
+    transform: translateY(-5px);
+    opacity: 0.9;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2.5rem;
+    color: #999;
+}
+.footer-bottom a {
+    color: #999;
+    text-decoration: underline;
+}
+.footer-bottom a:hover {
+    color: white;
+}
+
+/* Case Study Modal */
+.modal {
+    display: none; /* Hidden by default - JS will change this */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.85); /* Darker overlay */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding: 20px; 
+    animation: fadeInBackground 0.3s ease-out; 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 3rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 950px; /* Larger modal for case studies */
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    animation: fadeInModal 0.3s ease-out;
+    max-height: 90vh; /* Limit height */
+    overflow-y: auto; /* Enable scroll within modal */
+    transform: translateY(-30px); 
+    opacity: 0; 
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px; /* Larger close button */
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+}
+
+.modal-case-details h4 {
+    font-size: 1.8rem;
+    color: var(--accent-color); /* Accent for modal headings */
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+}
+.modal-case-details p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+}
+.modal-case-details blockquote {
+    background-color: var(--light-bg);
+    border-left: 6px solid var(--primary-color); /* Primary color border */
+    padding: 1.8rem;
+    margin: 2.5rem 0;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #444;
+}
+.modal-case-details cite {
+    display: block;
+    text-align: right;
+    margin-top: 0.8rem;
+    font-size: 1.05rem;
+    color: #666;
+}
+
+/* Helper Class for no scroll on body when modal is open */
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* Animations */
+@keyframes fadeInModal {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInBackground {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    h1 { font-size: 3.5rem; }
+    h2 { font-size: 2.5rem; }
+    .hero-content .sub-headline { font-size: 1.5rem; }
+    .btn { padding: 0.9rem 2rem; font-size: 1rem; }
+    .ai-point-item, .service-item { padding: 2rem; }
+    .testimonial-item { flex: 0 0 90%; max-width: 90%; } /* One testimonial per row on smaller screens */
+    .testimonial-carousel { justify-content: flex-start; } /* Align to start for horizontal scroll */
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.2rem; }
+    .hero-content .sub-headline { font-size: 1.2rem; }
+    .hero-trust-logos .logo-carousel img { height: 45px; margin-right: 2rem;}
+    .contact-form-grid { grid-template-columns: 1fr; padding: 2.5rem; }
+    .section { padding: 4rem 0; }
+    .section-title { font-size: 2.5rem; }
+    .modal {
+        align-items: flex-start; 
+        padding-top: 20px;
+    }
+    .modal-content {
+        width: 95%;
+        padding: 2rem;
+    }
+    .close-button {
+        font-size: 35px;
+        right: 20px;
+        top: 15px;
+    }
+    .footer-content {
+        grid-template-columns: 1fr; /* Stack footer columns */
+        text-align: center;
+    }
+    .footer-col ul {
+        padding-left: 0;
+    }
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    h1 { font-size: 2.8rem; }
+    .hero-content .sub-headline { font-size: 1rem; }
+    .btn { padding: 0.8rem 1.5rem; font-size: 0.9rem; border-radius: 5px; }
+    .hero-trust-logos .logo-carousel { gap: 1rem; }
+    .hero-trust-logos .logo-carousel img { height: 35px; }
+    .ai-points-grid, .case-study-grid, .services-grid {
+        grid-template-columns: 1fr;
+    }
+    .modal-content {
+        padding: 1.5rem;
+    }
+    .close-button {
+        font-size: 30px;
+        right: 15px;
+        top: 10px;
+    }
+    .testimonial-item { padding: 1.8rem; }
+    .testimonial-item blockquote { font-size: 1rem; }
+}
+@media (max-width: 768px) {
+    /* Example changes: */
+    .container {
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+
+    .hero-content h1 {
+        font-size: 2.5em; /* Make headline smaller */
+        line-height: 1.2;
+    }
+
+    .hero-content p {
+        font-size: 1em; /* Adjust sub-headline size */
+    }
+
+    /* If you have a grid or flex layout that's horizontal on desktop: */
+    .some-flex-container {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center them if needed */
+    }
+
+    .service-item {
+        width: 90%; /* Make service items take more width on mobile */
+        margin-bottom: 20px; /* Add space between stacked items */
+    }
+
+    /* Adjust navigation or hide/show elements */
+    .desktop-nav {
+        display: none; /* Hide desktop nav */
+    }
+    .mobile-nav-toggle {
+        display: block; /* Show a mobile menu icon */
+    }
+
+    /* Adjust padding for other sections as needed */
+    section {
+        padding: 40px 15px; /* Less horizontal padding */
+    }
+}
+
+/* Styles for smaller phones (e.g., screens up to 480px wide) */
+@media (max-width: 480px) {
+    /* Even smaller font sizes, more aggressive stacking/adjustments */
+    .hero-content h1 {
+        font-size: 2em;
+    }
+    .hero-content p {
+        font-size: 0.9em;
+    }
+    /* Specific adjustments for very small screens */
+}

@@ -203,7 +203,7 @@ a:hover {
 
 .hero-trust-logos {
     margin-top: 4em;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .hero-trust-logos p {
@@ -214,16 +214,16 @@ a:hover {
 
 .logo-carousel {
     display: flex;
-    white-space: nowrap; 
+    white-space: nowrap;
     animation: scrollLogos 25s linear infinite; /* Increased duration for smoother loop */
 }
 .logo-carousel img {
-    height: 55px; 
+    height: 55px;
     filter: grayscale(100%) brightness(180%); /* Lighter for dark background */
     opacity: 0.7;
     transition: all 0.3s ease;
-    flex-shrink: 0; 
-    margin-right: 3rem; 
+    flex-shrink: 0;
+    margin-right: 3rem;
 }
 .logo-carousel img:hover {
     filter: grayscale(0%) brightness(100%);
@@ -391,11 +391,11 @@ a:hover {
 .service-item .service-icon img {
     width: 100px;
     height: 100px;
-    filter: brightness(1); 
+    filter: brightness(1);
     transition: filter 0.3s ease;
 }
 .service-item:hover .service-icon img {
-    filter: brightness(1); 
+    filter: brightness(1);
 }
 
 .service-item h3 {
@@ -684,8 +684,8 @@ footer {
     background-color: rgba(0,0,0,0.85); /* Darker overlay */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-    padding: 20px; 
-    animation: fadeInBackground 0.3s ease-out; 
+    padding: 20px;
+    animation: fadeInBackground 0.3s ease-out;
 }
 
 .modal-content {
@@ -699,8 +699,8 @@ footer {
     animation: fadeInModal 0.3s ease-out;
     max-height: 90vh; /* Limit height */
     overflow-y: auto; /* Enable scroll within modal */
-    transform: translateY(-30px); 
-    opacity: 0; 
+    transform: translateY(-30px);
+    opacity: 0;
 }
 
 .close-button {
@@ -782,7 +782,7 @@ body.no-scroll {
     .section { padding: 4rem 0; }
     .section-title { font-size: 2.5rem; }
     .modal {
-        align-items: flex-start; 
+        align-items: flex-start;
         padding-top: 20px;
     }
     .modal-content {

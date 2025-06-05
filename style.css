@@ -1002,3 +1002,162 @@ body.no-scroll {
         margin: 1rem auto;
     }
 }
+
+/* Pricing Packages Section */
+.pricing-table-container {
+    overflow-x: auto; /* Enables horizontal scrolling on small screens */
+    margin-top: 3rem;
+    padding-bottom: 1rem; /* Space for scrollbar */
+}
+
+.pricing-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden; /* Ensures rounded corners on table */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    min-width: 900px; /* Ensures table doesn't get too squished on small screens */
+}
+
+.pricing-table-container th,
+.pricing-table-container td {
+    padding: 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+}
+
+.pricing-table-container th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pricing-table-container tr:last-child td {
+    border-bottom: none; /* No border for the last row */
+}
+
+.pricing-table-container td {
+    color: var(--text-color-dark);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.pricing-table-container td ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pricing-table-container td ul li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.2rem;
+    position: relative;
+}
+
+.pricing-table-container td ul li::before {
+    content: '•';
+    color: var(--accent-color);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.pricing-table-container td[data-label="Starting At"] {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    white-space: nowrap; /* Prevent price from breaking */
+}
+
+.pricing-table-container td[data-label="Main Deliverables"] {
+    font-size: 0.95rem; /* Slightly smaller text for deliverables to fit */
+}
+
+.pricing-cta {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    padding: 0.7rem 1.2rem;
+}
+
+/* Responsive Table for smaller screens (mobile view) */
+@media (max-width: 768px) {
+    .pricing-table-container table {
+        border: none;
+        box-shadow: none;
+        min-width: unset; /* Allow table to shrink if not using scroll overflow */
+    }
+
+    .pricing-table-container thead {
+        display: none; /* Hide table headers on mobile */
+    }
+
+    .pricing-table-container tr {
+        display: block; /* Make rows stack vertically */
+        margin-bottom: 1.5rem;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .pricing-table-container td {
+        display: block; /* Make cells stack vertically */
+        text-align: right;
+        padding: 0.8rem 1.5rem; /* Adjust padding for mobile cells */
+        border-bottom: 1px solid #eee;
+        position: relative;
+    }
+
+    .pricing-table-container td:last-child {
+        border-bottom: none;
+    }
+
+    /* Label for each cell content */
+    .pricing-table-container td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        text-transform: uppercase;
+        font-size: 0.8rem;
+    }
+
+    .pricing-table-container td[data-label="Main Deliverables"] {
+        text-align: left; /* Keep deliverables list left-aligned */
+    }
+
+    .pricing-table-container td[data-label="Main Deliverables"]::before {
+        left: 1.5rem; /* Adjust label position */
+    }
+
+    .pricing-table-container td ul {
+        margin-top: 0.5rem; /* Add space below label */
+    }
+
+    .pricing-cta {
+        width: auto; /* Allow button to shrink */
+        display: block; /* Make button full width of its container */
+        text-align: center;
+        margin: 1rem auto 0.5rem; /* Center button */
+    }
+}
+
+@media (max-width: 576px) {
+    .pricing-table-container td {
+        padding: 0.6rem 1rem;
+    }
+    .pricing-table-container td::before {
+        left: 1rem;
+    }
+    .pricing-cta {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+}

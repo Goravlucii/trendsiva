@@ -28,14 +28,15 @@
         // --- PASTE YOUR ACTUAL FIREBASE CONFIGURATION OBJECT HERE ---
         // You obtained this from your Firebase Project Settings -> Your apps -> Web app setup.
         // It should look something like: { apiKey: "...", authDomain: "...", projectId: "..." }
-        const hardcodedFirebaseConfig = {
-            apiKey: "YOUR_API_KEY_HERE", // REPLACE WITH YOUR ACTUAL API KEY
-            authDomain: "YOUR_AUTH_DOMAIN_HERE", // REPLACE WITH YOUR ACTUAL AUTH DOMAIN (e.g., your-project-id.firebaseapp.com)
-            projectId: "YOUR_PROJECT_ID_HERE", // REPLACE WITH YOUR ACTUAL PROJECT ID
-            storageBucket: "YOUR_STORAGE_BUCKET_HERE", // REPLACE
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID_HERE", // REPLACE
-            appId: "YOUR_APP_ID_HERE" // REPLACE
-        };
+const hardcodedFirebaseConfig = {
+  apiKey: "AIzaSyBl2SH_PChZrvpuzJAZA8dLtoRIxJhInEs",
+  authDomain: "trendsiva-website-data.firebaseapp.com",
+  projectId: "trendsiva-website-data",
+  storageBucket: "trendsiva-website-data.firebasestorage.app",
+  messagingSenderId: "195008342815",
+  appId: "1:195008342815:web:cb568dda3537f911ca1e2a",
+  measurementId: "G-VZH5QZJV6L"
+};
 
         // Use the hardcoded config as a fallback if the environment one is empty/not provided correctly
         const firebaseConfig = (typeof __firebase_config !== 'undefined' && Object.keys(JSON.parse(__firebase_config)).length > 0)

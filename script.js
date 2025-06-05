@@ -34,27 +34,27 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     const aiAdvantages = [
-        { icon_url: '/static/icons/icon-predictive.png', title: 'Accurate Audience Insights', description: 'Our in-depth data analysis precisely identifies your target customers, allowing us to craft optimal marketing strategies.' },
-        { icon_url: '/static/icons/icon-automation.png', title: 'Unrivaled Efficiency', description: 'We streamline repetitive tasks and optimize campaigns in real-time, allowing you to scale your efforts for maximum impact without proportional increases in manual labor.' },
-        { icon_url: '/static/icons/icon-growth.png', title: 'Unlock Rapid Growth', description: 'Accelerate your market expansion by rapidly testing and deploying campaigns across diverse channels and segments, achieving unprecedented growth for your business.' }
+        { icon_url: '/static/1.png', title: 'Accurate Audience Insights', description: 'Our in-depth data analysis precisely identifies your target customers, allowing us to craft optimal marketing strategies.' },
+        { icon_url: '/static/icons/2.png', title: 'Unrivaled Efficiency', description: 'We streamline repetitive tasks and optimize campaigns in real-time, allowing you to scale your efforts for maximum impact without proportional increases in manual labor.' },
+        { icon_url: '/static/icons/3.png', title: 'Unlock Rapid Growth', description: 'Accelerate your market expansion by rapidly testing and deploying campaigns across diverse channels and segments, achieving unprecedented growth for your business.' }
     ];
 
     const servicesData = [
-        { icon_url: '/static/icons/service-seo.png', title: 'Strategic SEO', description: 'Dominate US search results with in-depth keyword research, insight-driven content, and robust technical optimization.' },
-        { icon_url: '/static/icons/service-ecommerce.png', title: 'Shopify & E-commerce Optimization', description: 'Build high-converting online stores with personalized shopping experiences, dynamic pricing, and streamlined customer support.' },
-        { icon_url: '/static/icons/service-wordpress.png', title: 'WordPress & Content Solutions', description: 'Develop robust WordPress sites with streamlined content creation, performance optimization, and effective tracking.' },
-        { icon_url: '/static/icons/service-dropshipping.png', title: 'Dropshipping Setup & Automation', description: 'Launch and scale your dropshipping business through intelligent product research and automated fulfillment processes.' },
-        { icon_url: '/static/icons/service-social.png', title: 'Social Media Management', description: 'Boost your social presence with engaging content, precisely targeted ads, and in-depth sentiment analysis for powerful results.' },
-        { icon_url: '/static/icons/service-branding.png', title: 'Branding & Identity Development', description: 'Craft compelling brands by leveraging deep market insights for creative inspiration and trend analysis.' },
-        { icon_url: '/static/icons/service-ppc.png', title: 'Optimized PPC Campaigns', description: 'Maximize ROI with strategic bidding, dynamic ad copy generation, and precise audience targeting for US campaigns.' },
-        { icon_url: '/static/icons/service-analytics.png', title: 'Advanced Analytics & Reporting', description: 'Receive deep, actionable insights and automated reports that guide strategic decisions and predict future trends.' }
+        { icon_url: '/static/5.png', title: 'Strategic SEO', description: 'Dominate US search results with in-depth keyword research, insight-driven content, and robust technical optimization.' },
+        { icon_url: '/static/6.png', title: 'Shopify & E-commerce Optimization', description: 'Build high-converting online stores with personalized shopping experiences, dynamic pricing, and streamlined customer support.' },
+        { icon_url: '/static/7.png', title: 'WordPress & Content Solutions', description: 'Develop robust WordPress sites with streamlined content creation, performance optimization, and effective tracking.' },
+        { icon_url: '/static/8.png', title: 'Dropshipping Setup & Automation', description: 'Launch and scale your dropshipping business through intelligent product research and automated fulfillment processes.' },
+        { icon_url: '/static/9.png', title: 'Social Media Management', description: 'Boost your social presence with engaging content, precisely targeted ads, and in-depth sentiment analysis for powerful results.' },
+        { icon_url: '/static/10.png', title: 'Branding & Identity Development', description: 'Craft compelling brands by leveraging deep market insights for creative inspiration and trend analysis.' },
+        { icon_url: '/static/11.png', title: 'Optimized PPC Campaigns', description: 'Maximize ROI with strategic bidding, dynamic ad copy generation, and precise audience targeting for US campaigns.' },
+        { icon_url: '/static/12.png', title: 'Advanced Analytics & Reporting', description: 'Receive deep, actionable insights and automated reports that guide strategic decisions and predict future trends.' }
     ];
 
     const caseStudyData = {
         'scratchit': {
             id: 'scratchit',
             title: 'Dropshipping Success: Scratchit\'s Daily Growth',
-            thumbnail_url: '/static/case_studies/treandsiva_thumbnail.png',
+            thumbnail_url: '/static/xx (1).png',
             results_text: 'Drove <span>consistent daily growth</span> for a dropshipping store with expert SEO, optimized product listings, and high-impact multi-channel ads.',
             industry: 'E-commerce / Dropshipping',
             challenge: 'Before partnering with Trendsiva, Scratchit faced significant challenges in scaling their newly launched dropshipping store. They struggled with inconsistent sales, limited brand visibility, and inefficient ad spending, resulting in low ROI and slow customer acquisition. The manual processes for product research and ad management were time-consuming and unsustainable for rapid growth.',
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'lisatxguide': {
             id: 'lisatxguide',
             title: 'Lisatxguide: Enhancing San Antonio Travel Discovery',
-            thumbnail_url: '/static/case_studies/techstartup_thumbnail.png',
+            thumbnail_url: '/static/lisa_img.jpg',
             results_text: 'Significantly boosted online discovery and user engagement for a leading travel guide, connecting visitors with San Antonio\'s top hotels, restaurants, events, and attractions.',
             industry: 'Travel & Tourism',
             challenge: 'Lisatxguide, a comprehensive online travel guide for San Antonio, struggled with attracting organic traffic and engaging users effectively. Their existing website lacked advanced SEO features, dynamic content updates, and a mobile-optimized experience, making it difficult for tourists to find relevant information about local attractions, hotels, and events. This resulted in low visibility in search engine rankings and limited user interaction.',
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'summit-cleaners': {
             id: 'summit-cleaners',
             title: 'Local Lead Generation: Summit Cleaners',
-            thumbnail_url: '/static/case_studies/leads_img.png',
+            thumbnail_url: '/static/leads_img.png',
             results_text: 'Drove a <span>180% surge in qualified local leads</span> and secured top 3 Google Map Pack rankings for a growing cleaning service in Denver, CO.',
             industry: 'Local Services (Cleaning)',
             challenge: 'Summit Cleaners, a burgeoning cleaning service in Denver, CO, faced intense local competition and struggled to generate consistent, qualified leads through their online presence. Their website had poor local search visibility, and their Google My Business listing was unoptimized, hindering their ability to attract new residential and commercial clients within their service area.',
@@ -90,9 +90,9 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     const testimonialsData = [
-        { photo_url: '/static/testimonials/sarah_chen.png', quote: "Bringing Trendsiva onboard was the smartest decision we made. Their AI-driven approach to SEO utterly transformed our online visibility. We saw a dramatic increase in organic leads that were genuinely interested in our services. It's clear they're at the forefront of digital marketing with AI.", client_name: 'David Chen', client_title_location: 'CEO of "Tech Innovations Inc." (New York, NY)' },
-        { photo_url: '/static/testimonials/michael_b.png', quote: "As a dropshipper, efficiency is everything. Trendsiva's AI automation for product sourcing and customer service has been invaluable. It's like having a 24/7 team working for us, allowing us to focus on scaling. Their specialization in AI truly sets them apart.", client_name: 'Jessica Miller', client_title_location: 'Founder of "Zenith Drops" (Los Angeles, CA)' },
-        { photo_url: '/static/testimonials/emily_r.png', quote: "We needed a fresh, data-driven approach to our social media, and Trendsiva delivered. Their use of AI for content creation and audience targeting resulted in our most engaging campaigns to date. We're consistently seeing higher conversion rates from our social efforts now.", client_name: 'Robert Davis', client_title_location: 'Marketing Director at "Coastal Resorts" (Miami, FL)' }
+        { photo_url: '/static/xx (3).png', quote: "Bringing Trendsiva onboard was the smartest decision we made. Their AI-driven approach to SEO utterly transformed our online visibility. We saw a dramatic increase in organic leads that were genuinely interested in our services. It's clear they're at the forefront of digital marketing with AI.", client_name: 'David Chen', client_title_location: 'CEO of "Tech Innovations Inc." (New York, NY)' },
+        { photo_url: '/static/xx (6).png', quote: "As a dropshipper, efficiency is everything. Trendsiva's AI automation for product sourcing and customer service has been invaluable. It's like having a 24/7 team working for us, allowing us to focus on scaling. Their specialization in AI truly sets them apart.", client_name: 'Jessica Miller', client_title_location: 'Founder of "Zenith Drops" (Los Angeles, CA)' },
+        { photo_url: '/static/xx (4).png', quote: "We needed a fresh, data-driven approach to our social media, and Trendsiva delivered. Their use of AI for content creation and audience targeting resulted in our most engaging campaigns to date. We're consistently seeing higher conversion rates from our social efforts now.", client_name: 'Robert Davis', client_title_location: 'Marketing Director at "Coastal Resorts" (Miami, FL)' }
     ];
 
     // --- Content Population (using hardcoded data) ---

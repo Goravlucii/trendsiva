@@ -112,14 +112,30 @@ document.addEventListener('DOMContentLoaded', function() {
     // Note: The video source is already set in HTML and doesn't need JS modification unless dynamic video switching is desired.
 
     // Update Footer
-    document.querySelector('footer .footer-col p:nth-of-type(1)').textContent = "Driving US Market Success with Strategic Digital Solutions."; // This text was static in HTML
-    document.querySelector('footer .footer-col p:nth-of-type(2) a').href = `mailto:${globalSettings.footer_email}`;
-    document.querySelector('footer .footer-col p:nth-of-type(2) a').textContent = globalSettings.footer_email;
-    document.querySelector('footer .footer-col p:nth-of-type(3) a').href = `tel:${globalSettings.footer_phone}`;
-    document.querySelector('footer .footer-col p:nth-of-type(3) a').textContent = globalSettings.footer_phone;
-    document.querySelector('.footer-logo').src = globalSettings.footer_logo_light;
+    const footerP1 = document.querySelector('footer .footer-col p:nth-of-type(1)');
+    if (footerP1) {
+        footerP1.textContent = "Driving US Market Success with Strategic Digital Solutions.";
+    }
+
+    const footerEmailLink = document.querySelector('footer .footer-col p:nth-of-type(2) a');
+    if (footerEmailLink) {
+        footerEmailLink.href = `mailto:${globalSettings.footer_email}`;
+        footerEmailLink.textContent = globalSettings.footer_email;
+    }
+
+    const footerPhoneLink = document.querySelector('footer .footer-col p:nth-of-type(3) a');
+    if (footerPhoneLink) {
+        footerPhoneLink.href = `tel:${globalSettings.footer_phone}`;
+        footerPhoneLink.textContent = globalSettings.footer_phone;
+    }
+
+    const footerLogo = document.querySelector('.footer-logo');
+    if (footerLogo) {
+        footerLogo.src = globalSettings.footer_logo_light;
+    }
+
     const twitterLink = document.querySelector('.social-icons a[aria-label="Twitter"]');
-    if (twitterLink) {
+    if (twitterLink) { // Added null check here
         twitterLink.href = globalSettings.footer_twitter;
     }
 
@@ -222,12 +238,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Case Study Modal Logic (now uses hardcoded caseStudyData) ---
     const modal = document.getElementById("caseStudyModal");
-    const closeButton = modal.querySelector(".close-button");
+    const closeButton = modal ? modal.querySelector(".close-button") : null;
 
     function attachCaseStudyEventListeners() {
         const viewButtons = document.querySelectorAll(".view-case-study");
         viewButtons.forEach(button => {
-            button.removeEventListener('click', handleCaseStudyClick); // Prevent duplicate listeners
+            // Ensure no duplicate listeners are added
+            button.removeEventListener('click', handleCaseStudyClick);
             button.addEventListener("click", handleCaseStudyClick);
         });
     }
@@ -236,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const caseId = event.currentTarget.dataset.caseId;
         const data = caseStudyData[caseId]; // Use the hardcoded data
 
-        if (data) {
+        if (data && modal) {
             document.getElementById("modal-case-title").textContent = data.title;
             document.getElementById("modal-case-industry").textContent = data.industry;
             document.getElementById("modal-case-challenge").textContent = data.challenge;
@@ -251,17 +268,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    closeButton.addEventListener("click", () => {
-        modal.style.display = "none";
-        document.body.classList.remove('no-scroll');
-    });
-
-    window.addEventListener("click", (event) => {
-        if (event.target == modal) {
+    if (closeButton) {
+        closeButton.addEventListener("click", () => {
             modal.style.display = "none";
             document.body.classList.remove('no-scroll');
-        }
-    });
+        });
+    }
+
+
+    if (modal) { // Only add if modal element exists
+        window.addEventListener("click", (event) => {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.body.classList.remove('no-scroll');
+            }
+        });
+    }
+
 
     // Optional: Smooth scroll for hero arrow
     const scrollArrow = document.querySelector('.scroll-down-arrow');
@@ -280,23 +303,20 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentUserId = null;
 
     // Helper to display messages in the UI
-    const contactFormMessageDisplay = document.getElementById('contact-form-message'); // Assume you add a div with this ID near your form
+    const contactFormMessageDisplay = document.getElementById('contact-form-message');
     function showFormMessage(text, isError = false) {
         if (!contactFormMessageDisplay) {
             console.warn("Contact form message display element not found.");
-            // Fallback for debugging, but avoid alert() in production
-            // alert(text);
             return;
         }
         contactFormMessageDisplay.textContent = text;
-        contactFormMessageDisplay.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-blue-100', 'text-blue-700');
+        contactFormMessageDisplay.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-blue-100', 'text-blue-700', 'opacity-0');
         if (isError) {
             contactFormMessageDisplay.classList.add('bg-red-100', 'text-red-700');
         } else {
             contactFormMessageDisplay.classList.add('bg-blue-100', 'text-blue-700');
         }
-        contactFormMessageDisplay.classList.remove('opacity-0'); // Ensure visible
-        contactFormMessageDisplay.classList.add('opacity-100');
+        contactFormMessageDisplay.classList.add('opacity-100'); // Ensure visible
         setTimeout(() => {
             contactFormMessageDisplay.classList.remove('opacity-100');
             contactFormMessageDisplay.classList.add('opacity-0');
@@ -348,30 +368,31 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form Submission (Capture data and save to Firestore)
     const growthBlueprintForm = document.getElementById('growth-blueprint-form');
     if (growthBlueprintForm) {
-        // Remove the existing Netlify Forms event listener if it conflicts,
-        // or ensure it's still handled by Netlify's internal mechanism.
-        // For direct Firestore saving, we control the submit.
         growthBlueprintForm.addEventListener('submit', async function(event) {
-            event.preventDefault(); // Prevent default form submission (important for custom handling)
+            event.preventDefault(); // Prevent default form submission (CRUCIAL)
 
             const submitButton = this.querySelector('.btn-submit');
-            submitButton.disabled = true; // Disable button to prevent multiple submissions
-            submitButton.textContent = 'Submitting...';
+            if (submitButton) {
+                submitButton.disabled = true; // Disable button to prevent multiple submissions
+                submitButton.textContent = 'Submitting...';
+            }
 
             if (!db || !currentUserId) {
                 showFormMessage('Database not ready or user not authenticated. Please try again.', true);
-                submitButton.disabled = false;
-                submitButton.textContent = 'Send Message';
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Send Message';
+                }
                 return;
             }
 
             // Collect form data
             const formData = {
-                name: this.querySelector('input[name="name"]').value,
-                email: this.querySelector('input[name="email"]').value,
-                company: this.querySelector('input[name="company"]').value,
-                phone: this.querySelector('input[name="phone"]').value, // Assuming you have a phone input
-                message: this.querySelector('textarea[name="message"]').value,
+                name: this.querySelector('input[name="name"]') ? this.querySelector('input[name="name"]').value : '',
+                email: this.querySelector('input[name="email"]') ? this.querySelector('input[name="email"]').value : '',
+                company: this.querySelector('input[name="company"]') ? this.querySelector('input[name="company"]').value : '',
+                phone: this.querySelector('input[name="phone"]') ? this.querySelector('input[name="phone"]').value : '', // Assuming you have a phone input
+                message: this.querySelector('textarea[name="message"]') ? this.querySelector('textarea[name="message"]').value : '',
                 timestamp: firebase.firestore.FieldValue.serverTimestamp() // Firestore server timestamp
             };
 
@@ -388,8 +409,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error("Error saving form data to Firestore:", error);
                 showFormMessage(`Error sending message: ${error.message}. Please try again.`, true);
             } finally {
-                submitButton.disabled = false;
-                submitButton.textContent = 'Send Message';
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Send Message';
+                }
             }
         });
     }

@@ -35,8 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const aiAdvantages = [
         { icon_url: '/static/1.png', title: 'Accurate Audience Insights', description: 'Our in-depth data analysis precisely identifies your target customers, allowing us to craft optimal marketing strategies.' },
-        { icon_url: '/static/icons/2.png', title: 'Unrivaled Efficiency', description: 'We streamline repetitive tasks and optimize campaigns in real-time, allowing you to scale your efforts for maximum impact without proportional increases in manual labor.' },
-        { icon_url: '/static/icons/3.png', title: 'Unlock Rapid Growth', description: 'Accelerate your market expansion by rapidly testing and deploying campaigns across diverse channels and segments, achieving unprecedented growth for your business.' }
+        { icon_url: '/static/2.png', title: 'Unrivaled Efficiency', description: 'We streamline repetitive tasks and optimize campaigns in real-time, allowing you to scale your efforts for maximum impact without proportional increases in manual labor.' },
+        { icon_url: '/static/3.png', title: 'Unlock Rapid Growth', description: 'Accelerate your market expansion by rapidly testing and deploying campaigns across diverse channels and segments, achieving unprecedented growth for your business.' }
     ];
 
     const servicesData = [

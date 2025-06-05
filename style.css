@@ -1222,3 +1222,25 @@ body.no-scroll {
         font-size: 0.9rem;
     }
 }
+
+/* ... (Your existing CSS code) ... */
+
+/* Form Message Box for Contact Form */
+.message-box {
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    transition: opacity 0.5s ease-in-out, background-color 0.3s ease, color 0.3s ease;
+}
+
+.message-box.hidden {
+    display: none; /* Hide completely when not in use */
+}
+
+/* Add these for success/error colors if not already defined */
+.bg-red-100 { background-color: #fee2e2; }
+.text-red-700 { color: #dc2626; }
+.bg-blue-100 { background-color: #dbeafe; }
+.text-blue-700 { color: #2563eb; }
+

@@ -7,15 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
         offset: 120,
     });
 
-    // --- Hardcoded Static Data ---
-    // This data replaces all calls to your backend API
+    // --- Hardcoded Static Data (KEEP THIS AS IS) ---
     const globalSettings = {
         hero_typed_words: ["Elevate", "Innovate", "Accelerate"],
         hero_sub_headline: "Data-driven, AI-powered digital marketing strategies for ambitious US brands.",
-        hero_video_url: "/static/hero_video.mp4",
+        hero_video_url: "/static/videos/hero_video.mp4", // Corrected path to '/static/videos'
         footer_email: "info@trendsiva.com",
         footer_phone: "+1 (555) 123-4567",
-        footer_logo_light: "/static/treandsiva_logo_light.png",
+        footer_logo_light: "/static/trendsiva_logo_light.png", // Assuming this path
         footer_linkedin: "https://linkedin.com/company/trendsiva",
         footer_twitter: "https://twitter.com/trendsiva" // Placeholder, update if you have a Twitter
     };
@@ -51,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
         { icon_url: '/static/icons/service-analytics.png', title: 'Advanced Analytics & Reporting', description: 'Receive deep, actionable insights and automated reports that guide strategic decisions and predict future trends.' }
     ];
 
-    // Using an object for quick lookup by ID for the modal
     const caseStudyData = {
         'scratchit': {
             id: 'scratchit',
@@ -72,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
             results_text: 'Significantly boosted online discovery and user engagement for a leading travel guide, connecting visitors with San Antonio\'s top hotels, restaurants, events, and attractions.',
             industry: 'Travel & Tourism',
             challenge: 'Lisatxguide, a comprehensive online travel guide for San Antonio, struggled with attracting organic traffic and engaging users effectively. Their existing website lacked advanced SEO features, dynamic content updates, and a mobile-optimized experience, making it difficult for tourists to find relevant information about local attractions, hotels, and events. This resulted in low visibility in search engine rankings and limited user interaction.',
-            solution: 'Trendsiva implemented a multi-faceted digital strategy focused on SEO, content marketing, and user experience enhancement. Key solutions included: <br>1. **Comprehensive SEO Audit & Implementation:** Conducted thorough keyword research tailored to tourist queries and optimized website content, meta descriptions, and technical aspects for improved search rankings. <br>2. **Dynamic Content Creation:** Developed an AI-assisted content generation system to regularly update and expand information on hotels, restaurants, events, and attractions, ensuring fresh and relevant content. <br>3. **Mobile-First Responsive Design:** Redesigned the website with a focus on mobile responsiveness to cater to travelers on the go, improving navigation and accessibility. <br>4. **Local SEO Optimization:** Enhanced Google My Business profiles and local citations to capture location-based searches for San Antonio attractions.',
+            solution: 'Trendsiva implemented a multi-faceted digital strategy focused on SEO, content marketing, and user experience enhancement. Key solutions included: <br>1. **Comprehensive SEO Audit & Implementation:** Conducted thorough keyword research tailored to tourist queries and optimized website content, meta descriptions, and technical aspects for improved search rankings. <br>2. **Dynamic Content Creation:** Developed an AI-assisted content generation system to regularly update and expand information on hotels, restaurants, and attractions, ensuring fresh and relevant content. <br>3. **Mobile-First Responsive Design:** Redesigned the website with a focus on mobile responsiveness to cater to travelers on the go, improving navigation and accessibility. <br>4. **Local SEO Optimization:** Enhanced Google My Business profiles and local citations to capture location-based searches for San Antonio attractions.',
             results_charts_html: '<div><img src="/static/case_studies/charts/lisatxguide_chart.png" alt="Lisatxguide Traffic Growth Chart" style="max-width:100%; height:auto; margin-top: 15px;"></div>', // Placeholder image. Ensure this path exists.
             testimonial: '“Partnering with Trendsiva revolutionized our online presence. The surge in website traffic and user engagement has been incredible, solidifying our position as the go-to guide for San Antonio visitors. Their strategic approach and execution are unmatched.”',
             cite: '— Lisa Ramirez, Founder, Lisatxguide.com'
@@ -120,10 +118,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('footer .footer-col p:nth-of-type(3) a').href = `tel:${globalSettings.footer_phone}`;
     document.querySelector('footer .footer-col p:nth-of-type(3) a').textContent = globalSettings.footer_phone;
     document.querySelector('.footer-logo').src = globalSettings.footer_logo_light;
-    document.querySelector('.social-icons a[aria-label="LinkedIn"]').href = globalSettings.footer_linkedin;
-    // Assuming a Twitter link exists based on schema.org, add if you have an icon and need it dynamically updated
     const twitterLink = document.querySelector('.social-icons a[aria-label="Twitter"]');
-    if (twitterLink) { // Check if the element exists before trying to modify it
+    if (twitterLink) {
         twitterLink.href = globalSettings.footer_twitter;
     }
 
@@ -162,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const servicesGrid = document.querySelector('.services-grid');
     if (servicesGrid) {
         servicesGrid.innerHTML = ''; // Clear existing static content from HTML
-        servicesData.forEach((service, index) => { // Renamed from 'services' to 'servicesData' to avoid conflict
+        servicesData.forEach((service, index) => {
             const item = document.createElement('div');
             item.className = 'service-item';
             item.setAttribute('data-aos', 'fade-up');
@@ -178,7 +174,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Populate Case Studies (and prepare data for modal)
     const caseStudyGrid = document.querySelector('.case-study-grid');
-    // Convert caseStudyData object to an array for iteration when populating the grid
     const caseStudiesArray = Object.values(caseStudyData);
     if (caseStudyGrid) {
         caseStudyGrid.innerHTML = ''; // Clear static cards from HTML
@@ -187,7 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
             card.className = 'case-study-card';
             card.setAttribute('data-aos', 'zoom-in');
             card.setAttribute('data-aos-delay', (index + 1) * 100);
-            // Split the results_text for the <span> treatment as per original logic
             const resultParts = cs.results_text.split('<span>');
             const resultSpanEndParts = resultParts[1] ? resultParts[1].split('</span>') : ['', ''];
             const formattedResult = resultParts[0] + (resultParts[1] ? `<span>${resultSpanEndParts[0]}</span>${resultSpanEndParts[1] || ''}` : '');
@@ -202,7 +196,6 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             caseStudyGrid.appendChild(card);
         });
-        // Re-attach event listeners after new elements are added
         attachCaseStudyEventListeners();
     }
 
@@ -270,59 +263,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // --- Form Submission (Client-Side for Netlify Forms) ---
-    // Netlify Forms automatically handles submissions for forms with data-netlify="true"
-    // No JavaScript fetch call to a backend is needed for submission.
-    const growthBlueprintForm = document.getElementById('growth-blueprint-form');
-    if (growthBlueprintForm) {
-        growthBlueprintForm.addEventListener('submit', function(event) {
-            // event.preventDefault() is NOT strictly necessary if Netlify's default behavior is desired.
-            // If you keep preventDefault(), you must ensure the form is submitted via Netlify's JS API or a hidden iframe.
-            // For simple use, removing preventDefault() lets the browser handle standard POST, which Netlify intercepts.
-            // However, to show an alert *before* redirect (if Netlify has a success page), keep preventDefault().
-            // If you want to use Netlify's built-in success page redirection, remove this event listener completely.
-            // For now, keeping your existing alert logic and reset, which prevents default browser submission.
-            // For Netlify to process it, you must remove the event.preventDefault() OR use Netlify's AJAX submission.
-
-            // Option 1 (Simplest for Netlify Forms): Remove this entire event listener.
-            // The form will submit normally, and Netlify will capture it.
-            // The user will then be redirected to Netlify's default success page or your configured success page.
-
-            // Option 2 (If you want client-side alert then let Netlify redirect):
-            // Keep event.preventDefault();
-            // Show your alert.
-            // Then manually submit the form using this.submit();
-            // BUT, this.submit() might not be intercepted by Netlify's JS.
-
-            // Option 3 (AJAX with Netlify): Use Netlify's recommend JS API for AJAX submission.
-            // (More complex, but allows custom success messages without redirect)
-
-            // For now, based on your original commented out code, I'll keep the alert and reset.
-            // Be aware that if `event.preventDefault()` is kept, Netlify might not intercept the submission without further configuration.
-            // The simplest Netlify Form setup involves just `data-netlify="true"` on the HTML form and NO JS event listener preventing default submission.
-
-            event.preventDefault(); // Keep this if you want the alert *before* a potential redirect or to stay on page.
-
-            console.log("Form data captured for Netlify Forms.");
-            alert("Thank you for your inquiry! We've received your request for an AI Growth Blueprint and will be in touch shortly.");
-
-            // Reset the form fields
-            this.reset();
-
-            // To actually submit to Netlify via JS (if preventDefault() is used):
-            // You would normally do something like:
-            // const form = event.target;
-            // fetch(form.action, {
-            //     method: form.method,
-            //     body: new FormData(form)
-            // }).then(() => console.log('Form successfully submitted to Netlify!'))
-            //   .catch((error) => console.error('Netlify form submission error:', error));
-            // HOWEVER, the `data-netlify="true"` on the HTML form is usually enough,
-            // so this JS `fetch` is often redundant or can cause conflicts.
-            // The easiest is to remove this JS listener entirely and let the HTML form submit.
-        });
-    }
-
     // Optional: Smooth scroll for hero arrow
     const scrollArrow = document.querySelector('.scroll-down-arrow');
     if (scrollArrow) {
@@ -333,4 +273,128 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // --- Firebase Initialization and Form Submission Logic ---
+    let db;
+    let auth;
+    let currentUserId = null;
+
+    // Helper to display messages in the UI
+    const contactFormMessageDisplay = document.getElementById('contact-form-message'); // Assume you add a div with this ID near your form
+    function showFormMessage(text, isError = false) {
+        if (!contactFormMessageDisplay) {
+            console.warn("Contact form message display element not found.");
+            // Fallback for debugging, but avoid alert() in production
+            // alert(text);
+            return;
+        }
+        contactFormMessageDisplay.textContent = text;
+        contactFormMessageDisplay.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-blue-100', 'text-blue-700');
+        if (isError) {
+            contactFormMessageDisplay.classList.add('bg-red-100', 'text-red-700');
+        } else {
+            contactFormMessageDisplay.classList.add('bg-blue-100', 'text-blue-700');
+        }
+        contactFormMessageDisplay.classList.remove('opacity-0'); // Ensure visible
+        contactFormMessageDisplay.classList.add('opacity-100');
+        setTimeout(() => {
+            contactFormMessageDisplay.classList.remove('opacity-100');
+            contactFormMessageDisplay.classList.add('opacity-0');
+            setTimeout(() => {
+                contactFormMessageDisplay.classList.add('hidden');
+            }, 500); // Hide completely after transition
+        }, 5000); // Display for 5 seconds
+    }
+
+    // Initialize Firebase
+    async function initFirebaseForForm() {
+        try {
+            const firebaseAppId = window.__firebaseAppId;
+            const firebaseConfig = window.__firebaseConfig;
+            const firebaseInitialAuthToken = window.__firebaseInitialAuthToken;
+
+            if (!firebaseConfig || !firebaseConfig.apiKey) {
+                showFormMessage('Firebase configuration is missing. Cannot initialize contact form functionality.', true);
+                return;
+            }
+
+            const app = firebase.initializeApp(firebaseConfig);
+            db = firebase.firestore(app);
+            auth = firebase.auth(app);
+
+            // Sign in anonymously for form submissions (or with custom token if available)
+            if (firebaseInitialAuthToken) {
+                await auth.signInWithCustomToken(firebaseInitialAuthToken);
+            } else {
+                await auth.signInAnonymously();
+            }
+
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    currentUserId = user.uid;
+                    // console.log("Firebase initialized for form, user ID:", currentUserId);
+                } else {
+                    currentUserId = null;
+                    // console.warn("Firebase not signed in for form submission.");
+                }
+            });
+
+        } catch (error) {
+            console.error("Error initializing Firebase for form:", error);
+            showFormMessage(`Error initializing form: ${error.message}`, true);
+        }
+    }
+
+    // Form Submission (Capture data and save to Firestore)
+    const growthBlueprintForm = document.getElementById('growth-blueprint-form');
+    if (growthBlueprintForm) {
+        // Remove the existing Netlify Forms event listener if it conflicts,
+        // or ensure it's still handled by Netlify's internal mechanism.
+        // For direct Firestore saving, we control the submit.
+        growthBlueprintForm.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission (important for custom handling)
+
+            const submitButton = this.querySelector('.btn-submit');
+            submitButton.disabled = true; // Disable button to prevent multiple submissions
+            submitButton.textContent = 'Submitting...';
+
+            if (!db || !currentUserId) {
+                showFormMessage('Database not ready or user not authenticated. Please try again.', true);
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Message';
+                return;
+            }
+
+            // Collect form data
+            const formData = {
+                name: this.querySelector('input[name="name"]').value,
+                email: this.querySelector('input[name="email"]').value,
+                company: this.querySelector('input[name="company"]').value,
+                phone: this.querySelector('input[name="phone"]').value, // Assuming you have a phone input
+                message: this.querySelector('textarea[name="message"]').value,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp() // Firestore server timestamp
+            };
+
+            // Save to Firestore
+            try {
+                // We'll save form submissions to a subcollection under the app and user,
+                // for example: /artifacts/{appId}/users/{userId}/formSubmissions
+                const formSubmissionsRef = db.collection(`artifacts/${window.__firebaseAppId}/users/${currentUserId}/formSubmissions`);
+                await formSubmissionsRef.add(formData);
+
+                showFormMessage("Thank you for your inquiry! We've received your message and will be in touch shortly.", false);
+                this.reset(); // Clear form fields
+            } catch (error) {
+                console.error("Error saving form data to Firestore:", error);
+                showFormMessage(`Error sending message: ${error.message}. Please try again.`, true);
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Message';
+            }
+        });
+    }
+
+    // Initialize Firebase for form handling when the DOM is loaded
+    initFirebaseForForm();
+
 });

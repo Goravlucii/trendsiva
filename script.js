@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         hero_video_url: "/static/videos/hero_video.mp4", // Corrected path to '/static/videos'
         footer_email: "info@trendsiva.com",
         footer_phone: "+1 (555) 123-4567",
-        footer_logo_light: "/static/trendsiva_logo_light.png", // Assuming this path
+        footer_logo_light: "/static/trendsiva.png", // Assuming this path
         footer_linkedin: "https://linkedin.com/company/trendsiva",
         footer_twitter: "https://twitter.com/trendsiva" // Placeholder, update if you have a Twitter
     };

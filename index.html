@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trendsiva</title>
@@ -15,6 +15,22 @@
     
     <link rel="canonical" href="https://treandsiva.com">
     <link rel="icon" href="/static/trendsiva.png" type="image/x-icon">
+
+    <!-- Add these script tags in your <head> or just before your main script.js -->
+<!-- Firebase SDKs -->
+<script type="module">
+    // DO NOT change these lines. They use global variables provided by the Canvas environment.
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+    const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+    const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+    window.__firebaseAppId = appId; // Make it globally accessible for our script.js
+    window.__firebaseConfig = firebaseConfig; // Make it globally accessible
+    window.__firebaseInitialAuthToken = initialAuthToken; // Make it globally accessible
+</script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
     
     <script type="application/ld+json">
         {

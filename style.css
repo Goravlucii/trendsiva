@@ -762,7 +762,7 @@ body.no-scroll {
     to { opacity: 1; }
 }
 
-/* Responsive Design */
+/* Responsive Design (General) */
 @media (max-width: 992px) {
     h1 { font-size: 3.5rem; }
     h2 { font-size: 2.5rem; }
@@ -774,6 +774,9 @@ body.no-scroll {
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 0 15px; /* Adjust padding for smaller screens */
+    }
     h1 { font-size: 3rem; }
     h2 { font-size: 2.2rem; }
     .hero-content .sub-headline { font-size: 1.2rem; }
@@ -804,6 +807,27 @@ body.no-scroll {
     .social-icons {
         justify-content: center;
     }
+    /* Specific overrides for elements that should stack or resize */
+    .hero-content h1 {
+        font-size: 2.5em; /* Make headline smaller */
+        line-height: 1.2;
+    }
+    .hero-content p {
+        font-size: 1em; /* Adjust sub-headline size */
+    }
+    .service-item {
+        width: auto; /* Reset width to auto for flexbox */
+        margin-bottom: 20px; /* Add space between stacked items */
+    }
+    .desktop-nav {
+        display: none; /* Hide desktop nav */
+    }
+    .mobile-nav-toggle {
+        display: block; /* Show a mobile menu icon (if you have one) */
+    }
+    section {
+        padding: 40px 0; /* Less vertical padding */
+    }
 }
 
 @media (max-width: 576px) {
@@ -826,57 +850,17 @@ body.no-scroll {
     .testimonial-item { padding: 1.8rem; }
     .testimonial-item blockquote { font-size: 1rem; }
 }
-@media (max-width: 768px) {
-    /* Example changes: */
-    .container {
-        padding: 15px; /* Adjust padding for smaller screens */
-    }
 
-    .hero-content h1 {
-        font-size: 2.5em; /* Make headline smaller */
-        line-height: 1.2;
-    }
-
-    .hero-content p {
-        font-size: 1em; /* Adjust sub-headline size */
-    }
-
-    /* If you have a grid or flex layout that's horizontal on desktop: */
-    .some-flex-container {
-        flex-direction: column; /* Stack items vertically */
-        align-items: center; /* Center them if needed */
-    }
-
-    .service-item {
-        width: 90%; /* Make service items take more width on mobile */
-        margin-bottom: 20px; /* Add space between stacked items */
-    }
-
-    /* Adjust navigation or hide/show elements */
-    .desktop-nav {
-        display: none; /* Hide desktop nav */
-    }
-    .mobile-nav-toggle {
-        display: block; /* Show a mobile menu icon */
-    }
-
-    /* Adjust padding for other sections as needed */
-    section {
-        padding: 40px 15px; /* Less horizontal padding */
-    }
-}
-
-/* Styles for smaller phones (e.g., screens up to 480px wide) */
+/* Styles for very small phones (e.g., screens up to 480px wide) - merged with 576px breakpoint */
 @media (max-width: 480px) {
-    /* Even smaller font sizes, more aggressive stacking/adjustments */
     .hero-content h1 {
         font-size: 2em;
     }
     .hero-content p {
         font-size: 0.9em;
     }
-    /* Specific adjustments for very small screens */
 }
+
 /* Slider Container */
 .slider-container {
     position: relative;
@@ -977,7 +961,7 @@ body.no-scroll {
     transform: scale(1.2);
 }
 
-/* Responsive Adjustments for smaller screens */
+/* Responsive Adjustments for slider on smaller screens */
 @media (max-width: 768px) {
     .slider-nav {
         padding: 8px 12px;
@@ -1003,87 +987,6 @@ body.no-scroll {
     }
 }
 
-/* Pricing Packages Section */
-.pricing-table-container {
-    overflow-x: auto; /* Enables horizontal scrolling on small screens */
-    margin-top: 3rem;
-    padding-bottom: 1rem; /* Space for scrollbar */
-}
-
-.pricing-table-container table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    border-radius: 12px;
-    overflow: hidden; /* Ensures rounded corners on table */
-    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-    min-width: 900px; /* Ensures table doesn't get too squished on small screens */
-}
-
-.pricing-table-container th,
-.pricing-table-container td {
-    padding: 1.5rem;
-    text-align: left;
-    border-bottom: 1px solid #eee;
-    vertical-align: top;
-}
-
-.pricing-table-container th {
-    background-color: var(--primary-color);
-    color: white;
-    font-weight: 700;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.pricing-table-container tr:last-child td {
-    border-bottom: none; /* No border for the last row */
-}
-
-.pricing-table-container td {
-    color: var(--text-color-dark);
-    font-size: 1rem;
-    line-height: 1.6;
-}
-
-.pricing-table-container td ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.pricing-table-container td ul li {
-    margin-bottom: 0.5rem;
-    padding-left: 1.2rem;
-    position: relative;
-}
-
-.pricing-table-container td ul li::before {
-    content: '•';
-    color: var(--accent-color);
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
-.pricing-table-container td[data-label="Starting At"] {
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: var(--accent-color);
-    white-space: nowrap; /* Prevent price from breaking */
-}
-
-.pricing-table-container td[data-label="Main Deliverables"] {
-    font-size: 0.95rem; /* Slightly smaller text for deliverables to fit */
-}
-
-.pricing-cta {
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    padding: 0.7rem 1.2rem;
-}
 /* Pricing Packages Section */
 .pricing-table-container {
     overflow-x: auto; /* Enables horizontal scrolling on small screens */
@@ -1180,7 +1083,7 @@ body.no-scroll {
     border-radius: 8px; /* Slightly less rounded for buttons in table */
 }
 
-/* Advanced Mobile-Friendly Table Styling */
+/* Advanced Mobile-Friendly Table Styling (Specific to Pricing Section) */
 @media (max-width: 768px) {
     .pricing-table-container {
         overflow-x: hidden; /* No horizontal scroll on mobile, items stack */
@@ -1293,7 +1196,7 @@ body.no-scroll {
     }
 }
 
-/* Further refinements for very small screens */
+/* Further refinements for very small screens (Pricing Section) */
 @media (max-width: 480px) {
     .pricing-table-container tr {
         margin-bottom: 1rem; /* Slightly less space for very small screens */

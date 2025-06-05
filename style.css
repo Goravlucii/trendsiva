@@ -1084,13 +1084,113 @@ body.no-scroll {
     font-size: 0.9rem;
     padding: 0.7rem 1.2rem;
 }
+/* Pricing Packages Section */
+.pricing-table-container {
+    overflow-x: auto; /* Enables horizontal scrolling on small screens */
+    margin-top: 3rem;
+    padding-bottom: 1rem; /* Space for scrollbar */
+}
 
-/* Responsive Table for smaller screens (mobile view) */
+.pricing-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden; /* Ensures rounded corners on table */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    min-width: 900px; /* Ensures table doesn't get too squished on small screens */
+    border: 1px solid #e0e0e0; /* Subtle border for definition */
+}
+
+.pricing-table-container th,
+.pricing-table-container td {
+    padding: 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.pricing-table-container th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pricing-table-container tbody tr:last-child td {
+    border-bottom: none; /* No border for the last row in tbody */
+}
+
+.pricing-table-container tbody tr:nth-child(even) {
+    background-color: #fcfcfc; /* Slightly alternate row background */
+}
+
+.pricing-table-container tbody tr:hover {
+    background-color: #f0f8ff; /* Light blue hover for rows */
+}
+
+.pricing-table-container td {
+    color: var(--text-color-dark);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.pricing-table-container td ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pricing-table-container td ul li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem; /* More space for icon/bullet */
+    position: relative;
+    font-size: 0.95rem; /* Slightly smaller for compactness */
+    color: #555;
+}
+
+.pricing-table-container td ul li::before {
+    content: '\2713'; /* Checkmark icon */
+    color: var(--primary-color); /* Primary color for checkmark */
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1rem;
+}
+
+.pricing-table-container td[data-label="Starting At"] {
+    font-weight: 800; /* Bolder price */
+    font-size: 1.3rem; /* Slightly larger price */
+    color: var(--accent-color);
+    white-space: nowrap; /* Prevent price from breaking */
+}
+
+.pricing-table-container td[data-label="Main Deliverables"] {
+    font-size: 0.95rem; /* Text size matches li */
+}
+
+.pricing-cta {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px; /* Slightly less rounded for buttons in table */
+}
+
+/* Advanced Mobile-Friendly Table Styling */
 @media (max-width: 768px) {
+    .pricing-table-container {
+        overflow-x: hidden; /* No horizontal scroll on mobile, items stack */
+    }
+
     .pricing-table-container table {
         border: none;
         box-shadow: none;
-        min-width: unset; /* Allow table to shrink if not using scroll overflow */
+        min-width: unset; /* Allow table to shrink */
+        background-color: transparent; /* Transparent background for individual cards */
     }
 
     .pricing-table-container thead {
@@ -1098,66 +1198,124 @@ body.no-scroll {
     }
 
     .pricing-table-container tr {
-        display: block; /* Make rows stack vertically */
-        margin-bottom: 1.5rem;
+        display: flex; /* Use flexbox to stack items in a "card" */
+        flex-direction: column;
+        margin-bottom: 2rem; /* More space between cards */
         border: 1px solid #ddd;
-        border-radius: 12px;
+        border-radius: 15px; /* More rounded corners for card effect */
         overflow: hidden;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Stronger shadow for card effect */
+        background-color: white; /* White background for each card */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pricing-table-container tr:hover {
+        transform: translateY(-8px); /* Lift card on hover */
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .pricing-table-container tr:nth-child(even) {
+        background-color: white; /* Reset alternate background for cards */
     }
 
     .pricing-table-container td {
-        display: block; /* Make cells stack vertically */
-        text-align: right;
-        padding: 0.8rem 1.5rem; /* Adjust padding for mobile cells */
-        border-bottom: 1px solid #eee;
+        display: block; /* Make cells stack vertically within the card */
+        text-align: left; /* Align text left */
+        padding: 1.2rem 1.5rem; /* Consistent padding for all cells */
+        border-bottom: 1px dashed #eee; /* Dotted separator between fields */
         position: relative;
     }
 
     .pricing-table-container td:last-child {
-        border-bottom: none;
+        border-bottom: none; /* No border for the last cell in a card */
+        padding-bottom: 1.5rem; /* Add padding at the bottom of the card */
     }
 
-    /* Label for each cell content */
+    /* Label for each cell content (mobile) */
     .pricing-table-container td::before {
         content: attr(data-label);
-        position: absolute;
-        left: 1.5rem;
+        display: block; /* Make label appear on its own line */
         font-weight: 700;
-        color: var(--primary-color);
+        color: var(--primary-color); /* Primary color for labels */
         text-transform: uppercase;
+        font-size: 0.9rem; /* Slightly larger label */
+        margin-bottom: 0.5rem; /* Space between label and content */
+        position: static; /* No absolute positioning, flows with content */
+        text-align: left;
+    }
+
+    /* Special styling for Plan Name (card header) */
+    .pricing-table-container td[data-label="Plan Name"] {
+        background-color: var(--accent-color); /* Accent background for plan name */
+        color: white;
+        text-align: center;
+        padding: 1.5rem;
+        border-radius: 12px 12px 0 0; /* Rounded top corners for the card header */
+        font-size: 1.6rem; /* Larger plan name */
+        font-weight: 700;
+        margin-bottom: 0; /* Remove margin-bottom from td for consistent spacing */
+    }
+
+    .pricing-table-container td[data-label="Plan Name"]::before {
+        display: none; /* Hide the label for the main plan name */
+    }
+
+    /* Special styling for Starting At (prominent price) */
+    .pricing-table-container td[data-label="Starting At"] {
+        text-align: center; /* Center align price */
+        font-size: 1.8rem; /* Even larger price */
+        color: var(--accent-color); /* Keep accent color */
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        background-color: #f8f8f8; /* Light background for price */
+        border-bottom: 1px solid #ddd;
+    }
+    .pricing-table-container td[data-label="Starting At"]::before {
+        display: block; /* Show label above price */
+        margin-bottom: 0.3rem;
+        color: #777; /* Subtle color for price label */
         font-size: 0.8rem;
     }
 
-    .pricing-table-container td[data-label="Main Deliverables"] {
-        text-align: left; /* Keep deliverables list left-aligned */
-    }
 
-    .pricing-table-container td[data-label="Main Deliverables"]::before {
-        left: 1.5rem; /* Adjust label position */
-    }
-
-    .pricing-table-container td ul {
-        margin-top: 0.5rem; /* Add space below label */
-    }
-
+    /* CTA button within the card */
     .pricing-cta {
-        width: auto; /* Allow button to shrink */
-        display: block; /* Make button full width of its container */
-        text-align: center;
-        margin: 1rem auto 0.5rem; /* Center button */
+        width: calc(100% - 3rem); /* Full width minus padding */
+        margin: 1.5rem auto 1.5rem; /* Center and add vertical space */
+        font-size: 1rem; /* Larger button text */
+        padding: 1rem 1.5rem;
+        border-radius: 50px; /* Pill shape for CTA */
+    }
+
+    /* Remove bottom border from last td if it's the CTA */
+    .pricing-table-container td[data-label="CTA"] {
+        border-bottom: none;
     }
 }
 
-@media (max-width: 576px) {
+/* Further refinements for very small screens */
+@media (max-width: 480px) {
+    .pricing-table-container tr {
+        margin-bottom: 1rem; /* Slightly less space for very small screens */
+    }
     .pricing-table-container td {
-        padding: 0.6rem 1rem;
+        padding: 1rem;
     }
     .pricing-table-container td::before {
-        left: 1rem;
+        font-size: 0.8rem;
+    }
+    .pricing-table-container td[data-label="Plan Name"] {
+        font-size: 1.4rem;
+        padding: 1.2rem;
+    }
+    .pricing-table-container td[data-label="Starting At"] {
+        font-size: 1.6rem;
+    }
+    .pricing-table-container td ul li {
+        font-size: 0.9rem;
     }
     .pricing-cta {
-        padding: 0.6rem 1rem;
-        font-size: 0.85rem;
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
     }
 }

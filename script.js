@@ -301,6 +301,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let db;
     let auth;
     let currentUserId = null;
+    const growthBlueprintForm = document.getElementById('growth-blueprint-form');
+    const submitButton = growthBlueprintForm ? growthBlueprintForm.querySelector('.btn-submit') : null;
 
     // Helper to display messages in the UI
     const contactFormMessageDisplay = document.getElementById('contact-form-message');
@@ -326,15 +328,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000); // Display for 5 seconds
     }
 
-    // Initialize Firebase
-    async function initFirebaseForForm() {
+    // Initialize Firebase and set up auth listener
+    async function initFirebaseAndAuth() {
         try {
+            console.log("Initializing Firebase...");
             const firebaseAppId = window.__firebaseAppId;
             const firebaseConfig = window.__firebaseConfig;
             const firebaseInitialAuthToken = window.__firebaseInitialAuthToken;
 
             if (!firebaseConfig || !firebaseConfig.apiKey) {
-                showFormMessage('Firebase configuration is missing. Cannot initialize contact form functionality.', true);
+                showFormMessage('Firebase configuration is missing. Cannot initialize contact form functionality. Check your Firebase project settings.', true);
+                console.error("Firebase config missing or invalid:", firebaseConfig);
                 return;
             }
 
@@ -342,45 +346,72 @@ document.addEventListener('DOMContentLoaded', function() {
             db = firebase.firestore(app);
             auth = firebase.auth(app);
 
-            // Sign in anonymously for form submissions (or with custom token if available)
-            if (firebaseInitialAuthToken) {
-                await auth.signInWithCustomToken(firebaseInitialAuthToken);
-            } else {
-                await auth.signInAnonymously();
-            }
-
-            auth.onAuthStateChanged(user => {
+            // Listen for authentication state changes
+            auth.onAuthStateChanged(async user => {
                 if (user) {
                     currentUserId = user.uid;
-                    // console.log("Firebase initialized for form, user ID:", currentUserId);
+                    console.log("Firebase authenticated. User ID:", currentUserId);
+                    // Enable the submit button once authenticated
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Send Message';
+                    }
+                    showFormMessage('You are ready to send messages!', false);
                 } else {
                     currentUserId = null;
-                    // console.warn("Firebase not signed in for form submission.");
+                    console.warn("Firebase authentication state changed: Not signed in.");
+                    // Attempt anonymous sign-in if not already authenticated
+                    try {
+                        if (firebaseInitialAuthToken) {
+                            await auth.signInWithCustomToken(firebaseInitialAuthToken);
+                            console.log("Signed in with custom token.");
+                        } else {
+                            await auth.signInAnonymously();
+                            console.log("Signed in anonymously.");
+                        }
+                    } catch (signInError) {
+                        console.error("Error during anonymous sign-in:", signInError);
+                        showFormMessage(`Authentication failed: ${signInError.message}. Please check Firebase Authentication rules.`, true);
+                        if (submitButton) {
+                            submitButton.disabled = true; // Keep disabled if auth fails
+                            submitButton.textContent = 'Auth Error';
+                        }
+                    }
                 }
             });
 
         } catch (error) {
-            console.error("Error initializing Firebase for form:", error);
-            showFormMessage(`Error initializing form: ${error.message}`, true);
+            console.error("Error initializing Firebase application:", error);
+            showFormMessage(`Error setting up Firebase: ${error.message}. Check your Firebase SDK imports and config.`, true);
+            if (submitButton) {
+                submitButton.disabled = true; // Keep disabled if init fails
+                submitButton.textContent = 'Error';
+            }
         }
     }
 
+
     // Form Submission (Capture data and save to Firestore)
-    const growthBlueprintForm = document.getElementById('growth-blueprint-form');
     if (growthBlueprintForm) {
+        // Initially disable the submit button until Firebase is ready
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Loading...';
+        }
+
         growthBlueprintForm.addEventListener('submit', async function(event) {
             event.preventDefault(); // Prevent default form submission (CRUCIAL)
 
-            const submitButton = this.querySelector('.btn-submit');
             if (submitButton) {
                 submitButton.disabled = true; // Disable button to prevent multiple submissions
                 submitButton.textContent = 'Submitting...';
             }
 
+            // Check if Firebase is fully ready (db and user are authenticated)
             if (!db || !currentUserId) {
-                showFormMessage('Database not ready or user not authenticated. Please try again.', true);
+                showFormMessage('Database not ready or user not authenticated. Please wait a moment and try again, or check console for errors.', true);
                 if (submitButton) {
-                    submitButton.disabled = false;
+                    submitButton.disabled = false; // Re-enable so user can try again
                     submitButton.textContent = 'Send Message';
                 }
                 return;
@@ -398,8 +429,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Save to Firestore
             try {
-                // We'll save form submissions to a subcollection under the app and user,
-                // for example: /artifacts/{appId}/users/{userId}/formSubmissions
                 const formSubmissionsRef = db.collection(`artifacts/${window.__firebaseAppId}/users/${currentUserId}/formSubmissions`);
                 await formSubmissionsRef.add(formData);
 
@@ -417,7 +446,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initialize Firebase for form handling when the DOM is loaded
-    initFirebaseForForm();
+    // Call the Firebase initialization function
+    initFirebaseAndAuth();
 
 });

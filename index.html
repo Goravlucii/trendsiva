@@ -1,469 +1,714 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
     <meta charset="UTF-8">
-    <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '705644299000057');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=705644299000057&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trendsiva</title>
-    <meta name="description" content="Harness the power of AI to accelerate your digital marketing strategies. Specializing in high-ROI SEO, PPC, Social Media, and E-commerce for ambitious US brands.">
-    
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <link rel="canonical" href="https://treandsiva.com">
-    <link rel="icon" href="/static/favicon.png" type="image/x-icon">
+    <title>Trendsiva - Digital Marketing Agency</title>
 
-    <!-- Add these script tags in your <head> or just before your main script.js -->
-<!-- Firebase SDKs -->
-    <!-- IMPORTANT: Place this script block in your <head> or just before your script.js -->
-    <!-- Firebase SDKs -->
-    <script type="module">
-        // Global variables provided by the Canvas environment (with a fallback)
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-        // --- PASTE YOUR ACTUAL FIREBASE CONFIGURATION OBJECT HERE ---
-        // You obtained this from your Firebase Project Settings -> Your apps -> Web app setup.
-        // It should look something like: { apiKey: "...", authDomain: "...", projectId: "..." }
-const hardcodedFirebaseConfig = {
-  apiKey: "AIzaSyBl2SH_PChZrvpuzJAZA8dLtoRIxJhInEs",
-  authDomain: "trendsiva-website-data.firebaseapp.com",
-  projectId: "trendsiva-website-data",
-  storageBucket: "trendsiva-website-data.firebasestorage.app",
-  messagingSenderId: "195008342815",
-  appId: "1:195008342815:web:cb568dda3537f911ca1e2a",
-  measurementId: "G-VZH5QZJV6L"
-};
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-        // Use the hardcoded config as a fallback if the environment one is empty/not provided correctly
-        const firebaseConfig = (typeof __firebase_config !== 'undefined' && Object.keys(JSON.parse(__firebase_config)).length > 0)
-                               ? JSON.parse(__firebase_config)
-                               : hardcodedFirebaseConfig;
+    <!-- React and ReactDOM CDNs -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 
-        window.__firebaseAppId = appId; // Ensure Canvas app ID is always used
-        window.__firebaseConfig = firebaseConfig; // Pass the (now guaranteed) config
-        window.__firebaseInitialAuthToken = initialAuthToken; // Pass the initial auth token
-    </script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
-    
-    
-    <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Trendsiva",
-          "url": "https://treandsiva.com",
-          "logo": "/static/trendsiva.png",
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+1-555-DIGITAL",
-            "contactType": "Sales"
-          },
-          "sameAs": [
-            "https://linkedin.com/company/treandsiva",
-            "https://twitter.com/treandsiva"
-          ]
+    <!-- Babel CDN for JSX transpilation in browser (for development/demo only) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+      /* Custom CSS for animations and fonts */
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+
+      /* Custom Animations for Hero Section */
+      @keyframes fade-in-up {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
         }
-    </script>
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes bounce-in {
+        0% {
+          opacity: 0;
+          transform: scale(0.3);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+        70% {
+          transform: scale(0.9);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+
+      .animate-fade-in-up {
+        animation: fade-in-up 1s ease-out forwards;
+      }
+      .animate-bounce-in {
+        animation: bounce-in 1s ease-out forwards;
+      }
+      .animate-pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+
+      .animation-delay-500 { animation-delay: 0.5s; }
+      .animation-delay-1000 { animation-delay: 1s; }
+      .animation-delay-2000 { animation-delay: 2s; }
+      .animation-delay-4000 { animation-delay: 4s; }
+
+      /* Custom glow effect for hover */
+      .hover\:shadow-purple-glow:hover {
+        box-shadow: 0 0 20px rgba(168, 85, 247, 0.7); /* purple-500 with opacity */
+      }
+      .hover\:shadow-blue-glow:hover {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.7); /* blue-500 with opacity */
+      }
+    </style>
 </head>
-<body>
+<body class="bg-gray-950">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
 
-    <header class="hero-section">
-        <div class="hero-video-bg">
-            <video autoplay loop muted playsinline>
-                <source src="/static/hero_video.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-            </video>
-        </div>
-        <div class="hero-content">
-            <h1 class="headline">
-                <span id="typed-text"></span> Your Business with US.
-            </h1>
-            <p class="sub-headline" data-aos="fade-up" data-aos-delay="300">
-                Data-driven, AI-powered digital marketing strategies for ambitious US brands.
-            </p>
-            <a href="#contact" class="btn btn-primary" data-aos="zoom-in" data-aos-delay="600">
-                Get Your Custom Growth Plan &nbsp;<span class="arrow">→</span>
-            </a>
-            <div class="hero-trust-logos" data-aos="fade-up" data-aos-delay="800">
-                <p>Trusted by Leading US Brands for AI-Powered Growth:</p>
-                <div class="logo-carousel">
-                    <img src="/static/trendsiva.png" alt="US Client Logo 1">
-                   
-                    <img src="/static/trendsiva.png" alt="US Client Logo 3">
-                    
-                    <img src="/static/trendsiva.png" alt="US Client Logo 5">
-                    
-                    <img src="/static/trendsiva.png" alt="US Client Logo 2">
-                    
-                    <img src="/static/trendsiva.png" alt="US Client Logo 4">
-                    
-                </div>
-            </div>
-        </div>
-        <a href="#services" class="scroll-down-arrow" aria-label="Scroll Down">
-            <span></span>
-            <span></span>
-            <span></span>
-        </a>
-    </header>
+    <!-- All React components and rendering logic go here -->
+    <script type="text/babel">
+        // Main App component
+        const App = () => {
+          const [showModal, setShowModal] = React.useState(false);
+          const [modalMessage, setModalMessage] = React.useState('');
 
-    <main>
-        <section id="ai-advantage" class="section ai-advantage" data-aos="fade-up">
-            <div class="container">
-                <h2 class="section-title">Pillars of Your Success: Precision, Efficiency, Scale</h2>
-                <p class="section-subtitle">Unlock Your Marketing Potential</p>
-                <div class="ai-points-grid">
-                    <div class="ai-point-item" data-aos="fade-left" data-aos-delay="100">
-                        <img src="/static/1.png" alt="AI Precision Icon"> 
-                        <h3>Accurate Audience Insights</h3>
-                        <p>Our in-depth data analysis precisely identifies your target customers, allowing us to craft optimal marketing strategies.</p>
-                    </div>
-                    <div class="ai-point-item" data-aos="fade-left" data-aos-delay="200">
-                        <img src="/static/2.png" alt="AI Efficiency Icon">
-                        <h3>Unrivaled Efficiency</h3>
-                        <p>We streamline repetitive tasks and optimize campaigns in real-time, allowing you to scale your efforts for maximum impact without proportional increases in manual labor.</p>
-                    </div>
-                    <div class="ai-point-item" data-aos="fade-left" data-aos-delay="300">
-                        <img src="/static/3.png" alt="AI Scale Icon">
-                        <h3>Unlock Rapid Growth</h3>
-                        <p>Accelerate your market expansion by rapidly testing and deploying campaigns across diverse channels and segments, achieving unprecedented growth for your business.</p>
-                    </div>
-                </div>
-                <div class="ai-hero-image" data-aos="zoom-in" data-aos-delay="400">
-                    <img src="/static/workies/1.png" alt="AI Marketing Dashboard Mockup">
-                    <p class="image-caption">Our Performance Dashboard: Clarity, Control, Conversion.</p>
-                </div>
-                <div class="ai-hero-image" data-aos="zoom-in" data-aos-delay="400">
-                    <img src="/static/workies/3.png" alt="AI Marketing Dashboard Mockup">
-                    <p class="image-caption">Unlock your full SEO Potential</p>
-                </div>
-                <div class="ai-hero-image" data-aos="zoom-in" data-aos-delay="400">
-                    <img src="/static/workies/4.png" alt="AI Marketing Dashboard Mockup">
-                    <p class="image-caption">Unlock your full Social Potential.</p>
-                </div>
-                <div class="ai-hero-image" data-aos="zoom-in" data-aos-delay="400">
-                    <img src="/static/workies/5.png" alt="AI Marketing Dashboard Mockup">
-                    <p class="image-caption">Unlock your performance</p>
-                </div>
-                <div class="ai-hero-image" data-aos="zoom-in" data-aos-delay="400">
-                    <img src="/static/workies/6.png" alt="AI Marketing Dashboard Mockup">
-                    <p class="image-caption">Our Performance Dashboard: Clarity, Control, Conversion.</p>
-                </div>
-            </div>
-        </section>
+          // Function to show custom modal messages
+          const showCustomModal = (message) => {
+            setModalMessage(message);
+            setShowModal(true);
+          };
 
-        <section id="services" class="section services bg-light" data-aos="fade-up">
-            <div class="container">
-                <h2 class="section-title">Digital Marketing Services Designed for Growth</h2>
-                <p class="section-subtitle">Crafted for the US market, powered by cutting-edge insights.</p>
-                <div class="services-grid">
-                    <div class="service-item" data-aos="fade-up" data-aos-delay="100">
-                        <div class="service-icon"><img src="/static/5.png" alt="Strategic SEO Icon"></div>
-                        <h3>Strategic SEO</h3>
-                        <p>Dominate US search results with in-depth keyword research, insight-driven content, and robust technical optimization.</p>
-                    </div>
-                    <div class="service-item" data-aos="fade-up" data-aos-delay="200">
-                        <div class="service-icon"><img src="/static/6.png" alt="Shopify Icon"></div>
-                        <h3>Shopify & E-commerce Optimization</h3>
-                        <p>Build high-converting online stores with personalized shopping experiences, dynamic pricing, and streamlined customer support.</p>
-                    </div>
-                    <div class="service-item" data-aos="fade-up" data-aos-delay="300">
-                        <div class="service-icon"><img src="/static/7.png" alt="WordPress Icon"></div>
-                        <h3>WordPress & Content Solutions</h3>
-                        <p>Develop robust WordPress sites with streamlined content creation, performance optimization, and effective tracking.</p>
-                    </div>
-                    <div class="service-item" data-aos="fade-up" data-aos-delay="400">
-                        <div class="service-icon"><img src="/static/8.png" alt="Dropshipping Icon"></div>
-                        <h3>Dropshipping Setup & Automation</h3>
-                        <p>Launch and scale your dropshipping business through intelligent product research and automated fulfillment processes.</p>
-                    </div>
-                    <div class="service-item" data-aos="fade-up" data-aos-delay="500">
-                        <div class="service-icon"><img src="/static/9.png" alt="Social Media Icon"></div>
-                        <h3>Social Media Management</h3>
-                        <p>Boost your social presence with engaging content, precisely targeted ads, and in-depth sentiment analysis for powerful results.</p>
-                    </div>
-                    <div class="service-item" data-aos="fade-up" data-aos-delay="600">
-                        <div class="service-icon"><img src="/static/10.png" alt="Branding Icon"></div>
-                        <h3>Branding & Identity Development</h3>
-                        <p>Craft compelling brands by leveraging deep market insights for creative inspiration and trend analysis.</p>
-                    </div>
-                    <div class="service-item" data-aos="fade-up" data-aos-delay="700">
-                        <div class="service-icon"><img src="/static/11.png" alt="PPC Icon"></div>
-                        <h3>Optimized PPC Campaigns</h3>
-                        <p>Maximize ROI with strategic bidding, dynamic ad copy generation, and precise audience targeting for US campaigns.</p>
-                    </div>
-                    <div class="service-item" data-aos="fade-up" data-aos-delay="800">
-                        <div class="service-icon"><img src="/static/12.png" alt="Analytics Icon"></div>
-                        <h3>Advanced Analytics & Reporting</h3>
-                        <p>Receive deep, actionable insights and automated reports that guide strategic decisions and predict future trends.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Pricing Packages Section -->
-<section id="pricing-packages" class="section bg-light" data-aos="fade-up">
-    <div class="container">
-        <h2 class="section-title">Our Monthly Packages</h2>
-        <p class="section-subtitle">Digital marketing solutions designed for ambitious businesses.</p>
-
-        <div class="pricing-table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Plan Name</th>
-                        <th>Starting At</th>
-                        <th>Main Deliverables</th>
-                        <th>CTA</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td data-label="Plan Name">Starter Package</td>
-                        <td data-label="Starting At">$399 / month</td>
-                        <td data-label="Main Deliverables">
-                            <ul>
-                                <li>• 1 social platform (10 posts per month)</li>
-                                <li>• Basic SEO(5 keywords) </li>
-                                <li>• 5 blog (per month)</li>
-                                <li>• Monthly report</li>
-                            </ul>
-                        </td>
-                        <td data-label="CTA">
-                            <a href="#contact" class="btn btn-secondary pricing-cta">Get Started</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-label="Plan Name">Growth Package</td>
-                        <td data-label="Starting At">$899 / month</td>
-                        <td data-label="Main Deliverables">
-                            <ul>
-                                <li>• 2–3 platforms (20 posts + graphics)</li>
-                                <li>• SEO (10–15 keywords, on-page)</li>
-                                <li>• 10 blogs (per month)</li>
-                                <li>• Google & Meta Ads </li>
-                                <li>• Bi-weekly report</li>
-                            </ul>
-                        </td>
-                        <td data-label="CTA">
-                            <a href="#contact" class="btn btn-primary pricing-cta">Get Started</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-label="Plan Name">Pro Scale Pak.</td>
-                        <td data-label="Starting At">$1,299 / month</td>
-                        <td data-label="Main Deliverables">
-                            <ul>
-                                <li>• E-commerce website (shopify, wordpress, wix)</li>
-                                <li>• SEO (Fully optimized)</li>
-                                <li>• Ads (Meta,tik tok & Google + retargeting)</li>
-                                <li>• Email marketing (4 times per month)</li>
-                                <li>• 20+ creatives (graphics + reels)</li>
-                                <li>• Weekly report + dashboard</li>
-                                <li>• Dedicated US-hour support</li>
-                            </ul>
-                        </td>
-                        <td data-label="CTA">
-                            <a href="#contact" class="btn btn-secondary pricing-cta">Get Started</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-label="Plan Name">Custom Plan</td>
-                        <td data-label="Starting At">$2,000+</td>
-                        <td data-label="Main Deliverables">
-                            <ul>
-                                <li>• Custom funnel builds, dropshipping st up, video ads,</li>
-                                <li>• e-commerce website, A/B testing, etc.</li>
-                            </ul>
-                        </td>
-                        <td data-label="CTA">
-                            <a href="#contact" class="btn btn-primary pricing-cta">Schedule a Call</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
-
-        
-        <section id="case-studies" class="section case-studies" data-aos="fade-up">
-            <div class="container">
-                <h2 class="section-title">Our Past Work: Driving Real Results</h2>
-                <p class="section-subtitle">Proven success for US businesses, fueled by cutting-edge strategies.</p>
-                <div class="case-study-grid">
-                    <div class="case-study-card" data-aos="zoom-in" data-aos-delay="100">
-                        <img src="/static/xx (1).png" alt="E-commerce Case Study">
-                        <div class="card-content">
-                            <h3>Dropshipping Success: Scratchit's Daily Growth</h3>
-                            <p class="result">Drove <span>consistent daily growth</span> for a dropshipping store with expert SEO, optimized product listings, and high-impact multi-channel ads.</p>
-                            <a href="https://www.scratchit.in" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">View details</a>
-                        </div>
-                    </div>
-                    <div class="case-study-card" data-aos="zoom-in" data-aos-delay="300">
-                        <img src="/static/leads_img.png" alt="Local Business Case Study">
-                        <div class="card-content">
-                            <h3>Local Lead Generation: Summit Cleaners</h3>
-                            <p class="result">Drove a <span>180% surge in qualified local leads</span> and secured top 3 Google Map Pack rankings for a growing cleaning service in Denver, CO.</p>
-                            <button class="btn btn-secondary view-case-study" data-case-id="summit-cleaners">View Details</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="testimonials" class="section testimonials bg-dark" data-aos="fade-up">
-            <div class="container">
-                <h2 class="section-title text-white">What Our Clients Say About Their Success.</h2>
-                <div class="testimonial-carousel">
-                    <div class="testimonial-item" data-aos="fade-up" data-aos-delay="100">
-                        <img src="/static/xx (3).png" alt="Client Sarah L." class="client-photo">
-                        <blockquote>
-                            <p>"Bringing Trendsiva onboard was the smartest decision we made. Their AI-driven approach to SEO utterly transformed our online visibility. We saw a dramatic increase in organic leads that were genuinely interested in our services. It's clear they're at the forefront of digital marketing with AI."</p>
-                            <cite>— David Chen, CEO of "Tech Innovations Inc." (New York, NY)</cite>
-                        </blockquote>
-                    </div>
-                    <div class="testimonial-item" data-aos="fade-up" data-aos-delay="200">
-                        <img src="/static/xx (6).png" alt="Client Jessica Miller" class="client-photo">
-                        <blockquote>
-                            <p>"As a dropshipper, efficiency is everything. Trendsiva's AI automation for product sourcing and customer service has been invaluable. It's like having a 24/7 team working for us, allowing us to focus on scaling. Their specialization in AI truly sets them apart."</p>
-                            <cite>— Jessica Miller, Founder of "Zenith Drops" (Los Angeles, CA)</cite>
-                        </blockquote>
-                    </div>
-                    <div class="testimonial-item" data-aos="fade-up" data-aos-delay="300">
-                        <img src="/static/xx (5).png" alt="Client Robert Davis" class="client-photo">
-                        <blockquote>
-                            <p>"We needed a fresh, data-driven approach to our social media, and Trendsiva delivered. Their use of AI for content creation and audience targeting resulted in our most engaging campaigns to date. We're consistently seeing higher conversion rates from our social efforts now."</p>
-                            <cite>— Robert Davis, Marketing Director at "Coastal Resorts" (Miami, FL)</cite>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section contact-form" data-aos="fade-up">
-            <div class="container">
-                <h2 class="section-title">Ready for AI-Powered Growth?</h2>
-                <p class="section-subtitle">Let's craft an intelligent strategy tailored for your US business ambitions.</p>
-                
-                <form id="growth-blueprint-form" class="contact-form-grid" method="POST" action="#">
-                    <div class="form-group" data-aos="fade-right" data-aos-delay="100">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" placeholder="John Doe" required>
-                    </div>
-                    <div class="form-group" data-aos="fade-left" data-aos-delay="200">
-                        <label for="email">Work Email</label>
-                        <input type="email" id="email" name="email" placeholder="john.doe@company.com" required>
-                    </div>
-                    <div class="form-group" data-aos="fade-right" data-aos-delay="300">
-                        <label for="company">Company Name</label>
-                        <input type="text" id="company" name="company" placeholder="Acme Corp" required>
-                    </div>
-                    <div class="form-group" data-aos="fade-left" data-aos-delay="400">
-                        <label for="website">Company Website (Optional)</label>
-                        <input type="url" id="website" name="website" placeholder="https://www.acmecorp.com">
-                    </div>
-                    <div class="form-group full-width" data-aos="fade-up" data-aos-delay="500">
-                        <label for="message">Tell us about your US growth goals & AI interest:</label>
-                        <textarea id="message" name="message" rows="5" placeholder="e.g., 'We need to leverage AI for lead generation in Q3 for our SaaS product.'"></textarea>
-                    </div>
-                    <div id="contact-form-message" class="message-box mt-4 hidden opacity-0"></div>
-                    <button type="submit" class="btn btn-submit full-width" data-aos="zoom-in" data-aos-delay="600">
-                        Get Your Custom Growth Plan
+          return (
+            <div className="min-h-screen bg-gray-950 text-gray-100 font-inter antialiased">
+              {/* Custom Modal Component */}
+              {showModal && (
+                <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+                  <div className="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-purple-600">
+                    <h3 className="text-xl font-bold text-white mb-4">Notification</h3>
+                    <p className="text-gray-200 mb-6">{modalMessage}</p>
+                    <button
+                      onClick={() => setShowModal(false)}
+                      className="w-full bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75"
+                    >
+                      Close
                     </button>
-                    <p class="privacy-note full-width" data-aos="fade-up" data-aos-delay="700">We respect your privacy. Your data is safe with us. <a href="privacy-policy.html">Privacy Policy</a></p>
-                </form>
-            </div>
-        </section>
-    </main>
+                  </div>
+                </div>
+              )}
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <img src="/static/trendsiva.png" alt="Trendsiva Logo" class="footer-logo">
-                    <p>Driving US Market Success with Strategic Digital Solutions.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#services">Our Services</a></li>
-                        <li><a href="#case-studies">Success Stories</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <p>Email: <a href="mailto:info@trendsiva.com">info@trendsiva.com</a></p>
-                    <p>Phone: <a href="tel:+15551234567">+1 (555) 123-4567</a></p>
-                </div>
-                <div class="footer-col">
-                    <h4>Follow Us</h4>
-                    <div class="social-icons">
-                        <a href="https://linkedin.com/company/trendsiva" target="_blank" aria-label="LinkedIn"><img src="/static/xx (2).png" alt="LinkedIn"></a>
-                        </div>
-                    <div class="social-icons">
-    <!-- ... other social icons ... -->
-    <a href="#" aria-label="Twitter"><img src="/static/icons/twitter-icon.png" alt="Twitter"></a>
-    <!-- Or something similar -->
-</div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Trendsiva. All rights reserved. <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
-            </div>
-        </div>
-    </footer>
+              {/* Header */}
+              <header className="fixed top-0 left-0 right-0 z-40 bg-gray-950 bg-opacity-90 backdrop-blur-sm shadow-lg py-4 px-6 md:px-12">
+                <nav className="container mx-auto flex justify-between items-center">
+                  <a href="#" className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 animate-pulse">
+                    Trendsiva
+                  </a>
+                  <div className="hidden md:flex space-x-8">
+                    <NavLink href="#services">Services</NavLink>
+                    <NavLink href="#portfolio">Portfolio</NavLink>
+                    <NavLink href="#pricing">Pricing</NavLink>
+                    <NavLink href="#contact">Contact</NavLink>
+                  </div>
+                  {/* Mobile Menu Button */}
+                  <MobileMenu />
+                </nav>
+              </header>
 
-    <div id="caseStudyModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h3 id="modal-case-title"></h3>
-            <p id="modal-case-industry"></p>
-            <div class="modal-case-details">
-                <h4>The Challenge:</h4>
-                <p id="modal-case-challenge"></p>
-                <h4>Our AI-Powered Solution:</h4>
-                <p id="modal-case-solution"></p>
-                <h4>The Results:</h4>
-                <div id="modal-case-results-charts">
+              <main>
+                {/* Hero Section */}
+                <HeroSection />
+
+                {/* Services Section */}
+                <ServicesSection />
+
+                {/* Trust Building Section */}
+                <TrustBuildingSection />
+
+                {/* Portfolio Section */}
+                <PortfolioSection />
+
+                {/* Pricing Section */}
+                <PricingSection />
+
+                {/* Contact Section */}
+                <ContactSection showCustomModal={showCustomModal} />
+              </main>
+
+              {/* Footer */}
+              <footer className="bg-gray-900 py-8 px-6 md:px-12 mt-20">
+                <div className="container mx-auto text-center text-gray-400">
+                  <p>&copy; {new Date().getFullYear()} Trendsiva. All rights reserved.</p>
+                  <p className="mt-2">Designed with passion for digital growth.</p>
+                </div>
+              </footer>
+            </div>
+          );
+        };
+
+        // Navigation Link Component
+        const NavLink = ({ href, children }) => (
+          <a
+            href={href}
+            className="text-gray-300 hover:text-purple-400 transition duration-300 ease-in-out font-medium text-lg relative group"
+          >
+            {children}
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-500 group-hover:w-full transition-all duration-300"></span>
+          </a>
+        );
+
+        // Mobile Menu Component (Placeholder for now, can be expanded)
+        const MobileMenu = () => {
+          const [isOpen, setIsOpen] = React.useState(false);
+
+          return (
+            <div className="md:hidden">
+              <button onClick={() => setIsOpen(!isOpen)} className="text-gray-300 focus:outline-none">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  {isOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                  )}
+                </svg>
+              </button>
+              {isOpen && (
+                <div className="absolute top-full left-0 right-0 bg-gray-900 shadow-lg py-4 flex flex-col items-center space-y-4">
+                  <NavLink href="#services">Services</NavLink>
+                  <NavLink href="#portfolio">Portfolio</NavLink>
+                  <NavLink href="#pricing">Pricing</NavLink>
+                  <NavLink href="#contact">Contact</NavLink>
+                </div>
+              )}
+            </div>
+          );
+        };
+
+        // Hero Section Component
+        const HeroSection = () => {
+          // State to track window width for responsive video
+          const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+
+          React.useEffect(() => {
+            const handleResize = () => {
+              setWindowWidth(window.innerWidth);
+            };
+
+            window.addEventListener('resize', handleResize);
+            return () => window.removeEventListener('resize', handleResize);
+          }, []);
+
+          // Define video URLs
+          // Replace these with your actual video URLs for desktop and mobile
+          const desktopVideoUrl = "material/bg_1.mp4";
+          const mobileVideoUrl = "material/bg_mobile.mp4"; // Example mobile-optimized video
+
+          return (
+            <section id="hero" className="relative h-screen flex items-center justify-center text-center overflow-hidden bg-gradient-to-br from-gray-950 to-black p-6 md:p-12">
+              {/* Video Background - Conditional Rendering */}
+              {windowWidth >= 768 ? ( // md breakpoint is 768px in Tailwind
+                <video
+                  className="absolute inset-0 w-full h-full object-cover z-0 opacity-20 hidden md:block"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                >
+                  <source src={desktopVideoUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <video
+                  className="absolute inset-0 w-full h-full object-cover z-0 opacity-20 md:hidden"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                >
+                  <source src={mobileVideoUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              )}
+
+              <div className="relative z-10 max-w-4xl mx-auto">
+                <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 animate-fade-in-up">
+                  Trendsiva <br/> Your Digital Growth Partner
+                </h1>
+                <p className="text-lg md:text-2xl text-gray-300 mb-10 animate-fade-in-up animation-delay-500">
+                  Unlock unparalleled online success with cutting-edge Social Media Management,
+                  Lead Generation, and high-impact Meta & Google Ads.
+                </p>
+                <a
+                  href="#contact"
+                  className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 px-10 rounded-full shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-75 animate-bounce-in animation-delay-1000"
+                >
+                  Get a Free Consultation
+                </a>
+              </div>
+            </section>
+          );
+        };
+
+        // Services Section Component
+        const ServicesSection = () => (
+          <section id="services" className="py-20 px-6 md:px-12 bg-gray-900">
+            <div className="container mx-auto text-center">
+              <h2 className="text-4xl md:text-5xl font-bold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                Our Core Services
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <ServiceCard
+                  icon="M17 20h-4a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v11a2 2 0 01-2 2zM12 18H8a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v11a2 2 0 01-2 2z"
+                  title="Social Media Management"
+                  description="Crafting engaging content and strategies to grow your brand's presence and foster community on all major platforms."
+                />
+                <ServiceCard
+                  icon="M13 10V3L4 14h7v7l9-11h-7z"
+                  title="Lead Generation Campaigns"
+                  description="Implementing targeted campaigns to capture high-quality leads, nurturing them into loyal customers for your business."
+                />
+                <ServiceCard
+                  icon="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10a2 2 0 01-2 2h-2a2 2 0 01-2-2zm9 0V5a2 2 0 00-2-2h-2a2 2 0 00-2 2v14a2 2 0 002 2h2a2 2 0 002-2z"
+                  title="Meta & Google Ads"
+                  description="Maximizing your ROI with expertly managed ad campaigns on Facebook, Instagram, and Google, delivering results at the lowest cost."
+                />
+              </div>
+            </div>
+          </section>
+        );
+
+        // Service Card Component
+        const ServiceCard = ({ icon, title, description }) => (
+          <div className="bg-gray-800 p-8 rounded-xl shadow-xl border border-purple-700 transform transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-purple-glow">
+            <div className="text-purple-400 mb-6 mx-auto w-20 h-20 flex items-center justify-center rounded-full bg-purple-900 bg-opacity-30">
+              <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d={icon} />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-bold text-white mb-4">{title}</h3>
+            <p className="text-gray-300 leading-relaxed">{description}</p>
+          </div>
+        );
+
+        // Trust Building Section Component
+        const TrustBuildingSection = () => (
+          <section id="trust" className="py-20 px-6 md:px-12 bg-gray-950">
+            <div className="container mx-auto text-center">
+              <h2 className="text-4xl md:text-5xl font-bold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-blue-400">
+                Why Choose Trendsiva?
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <TrustBenefit
+                  icon="M5 13l4 4L19 7"
+                  title="Unbeatable Value"
+                  description="Starting from just $300/month, get premium digital marketing without breaking the bank."
+                />
+                <TrustBenefit
+                  icon="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  title="Proven Results"
+                  description="Our data-driven strategies consistently deliver measurable growth and high ROI for our clients."
+                />
+                <TrustBenefit
+                  icon="M18 10a6 6 0 10-12 0v2H4a2 2 0 00-2 2v3a2 2 0 002 2h16a2 2 0 002-2v-3a2 2 0 00-2-2h-2v-2z"
+                  title="Dedicated Support"
+                  description="Receive personalized attention and transparent communication every step of the way."
+                />
+                <TrustBenefit
+                  icon="M3 6l9 4 9-4M21 14l-9 4-9-4M3 10v4l9 4 9-4v-4"
+                  title="Transparent Reporting"
+                  description="Access clear, concise reports showing your campaign performance and progress."
+                />
+              </div>
+              {/* Placeholder for Client Logos/Testimonials */}
+              <div className="mt-20">
+                <h3 className="text-3xl font-bold text-gray-200 mb-8">Trusted by Growing Businesses</h3>
+                <div className="flex justify-center items-center gap-8 opacity-70 overflow-x-auto py-4"> {/* Added overflow-x-auto and py-4 */}
+                  {/* Placeholder Logos - Fixed size and in one line */}
+                  <img src="material/logo_1.png" alt="Client A Logo" className="w-24 h-12 flex-shrink-0 filter grayscale hover:grayscale-0 transition-all duration-300 rounded-md" />
+                  <img src="material/logo_2.png" alt="Client B Logo" className="w-24 h-12 flex-shrink-0 filter grayscale hover:grayscale-0 transition-all duration-300 rounded-md" />
+                  <img src="material/logo_3.png" alt="Client C Logo" className="w-24 h-12 flex-shrink-0 filter grayscale hover:grayscale-0 transition-all duration-300 rounded-md" />
+                  <img src="material/logo_1.png" alt="Client D Logo" className="w-24 h-12 flex-shrink-0 filter grayscale hover:grayscale-0 transition-all duration-300 rounded-md" />
+                  <img src="material/logo_2.png" alt="Client E Logo" className="w-24 h-12 flex-shrink-0 filter grayscale hover:grayscale-0 transition-all duration-300 rounded-md" />
+                  <img src="material/logo_3.png" alt="Client F Logo" className="w-24 h-12 flex-shrink-0 filter grayscale hover:grayscale-0 transition-all duration-300 rounded-md" />
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+
+        // Trust Benefit Card Component
+        const TrustBenefit = ({ icon, title, description }) => (
+          <div className="bg-gray-800 p-6 rounded-xl shadow-lg border border-blue-700 transform transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-blue-glow">
+            <div className="text-blue-400 mb-4 mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-blue-900 bg-opacity-30">
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={icon} />
+              </svg>
+            </div>
+            <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
+            <p className="text-gray-300 text-sm">{description}</p>
+          </div>
+        );
+
+        // Portfolio Section Component
+        const PortfolioSection = () => {
+          const projects = [
+            {
+              id: 1,
+              title: "E-commerce Sales Boost",
+              description: "Increased online store revenue by 40% through targeted Meta Ads and engaging social media campaigns.",
+              image: "https://placehold.co/400x300/4A00B0/FFFFFF?text=E-commerce+Project",
+              category: "Meta Ads"
+            },
+            {
+              id: 2,
+              title: "Local Business Lead Growth",
+              description: "Generated 150+ high-quality leads monthly for a local service business via Google Search Ads.",
+              image: "https://placehold.co/400x300/B0004A/FFFFFF?text=Local+Leads+Project",
+              category: "Google Ads"
+            },
+            {
+              id: 3,
+              title: "Brand Awareness Campaign",
+              description: "Achieved 2M+ impressions and 30% increase in brand mentions for a new startup on social media.",
+              image: "https://placehold.co/400x300/004AB0/FFFFFF?text=Brand+Awareness+Project",
+              category: "Social Media"
+            },
+            {
+              id: 4,
+              title: "SaaS Lead Nurturing",
+              description: "Developed a comprehensive lead nurturing funnel that converted 25% of MQLs into paying customers.",
+              image: "https://placehold.co/400x300/4AB000/FFFFFF?text=SaaS+Project",
+              category: "Lead Generation"
+            }
+          ];
+
+          const [activeCategory, setActiveCategory] = React.useState('All');
+
+          const filteredProjects = activeCategory === 'All'
+            ? projects
+            : projects.filter(project => project.category === activeCategory);
+
+          return (
+            <section id="portfolio" className="py-20 px-6 md:px-12 bg-gray-900">
+              <div className="container mx-auto text-center">
+                <h2 className="text-4xl md:text-5xl font-bold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+                  Our Success Stories
+                </h2>
+
+                <div className="flex flex-wrap justify-center gap-4 mb-12">
+                  {['All', 'Social Media', 'Lead Generation', 'Meta Ads', 'Google Ads'].map(category => (
+                    <button
+                      key={category}
+                      onClick={() => setActiveCategory(category)}
+                      className={`py-2 px-6 rounded-full font-semibold transition duration-300 ease-in-out
+                        ${activeCategory === category
+                          ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
+                          : 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
+                        }`}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                  {filteredProjects.map(project => (
+                    <PortfolioCard key={project.id} project={project} />
+                  ))}
+                  {filteredProjects.length === 0 && (
+                    <p className="text-gray-400 text-lg col-span-full">No projects found for this category.</p>
+                  )}
+                </div>
+              </div>
+            </section>
+          );
+        };
+
+        // Portfolio Card Component
+        const PortfolioCard = ({ project }) => (
+          <div className="bg-gray-800 rounded-xl shadow-xl overflow-hidden border border-purple-800 transform transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-2xl hover:shadow-purple-900">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-56 object-cover object-center transform transition-transform duration-500 hover:scale-110"
+              onError={(e) => { e.target.onerror = null; e.target.src = `https://placehold.co/400x300/333/FFF?text=${project.title.replace(/\s/g, '+')}`; }}
+            />
+            <div className="p-6">
+              <h3 className="text-2xl font-bold text-white mb-3">{project.title}</h3>
+              <p className="text-gray-300 text-base mb-4">{project.description}</p>
+              <span className="inline-block bg-purple-700 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide">
+                {project.category}
+              </span>
+            </div>
+          </div>
+        );
+
+        // Pricing Section Component
+        const PricingSection = () => (
+          <section id="pricing" className="py-20 px-6 md:px-12 bg-gray-950">
+            <div className="container mx-auto text-center">
+              <h2 className="text-4xl md:text-5xl font-bold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">
+                Flexible Pricing for Every Business
+              </h2>
+              <p className="text-lg text-gray-300 mb-16">
+                Our transparent pricing ensures you get maximum value for your investment.
+                All plans are fully customizable.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+                <PricingCard
+                  plan="Starter"
+                  price="300"
+                  features={[
+                    "Basic Social Media Management",
+                    "1 Platform (e.g., Facebook)",
+                    "4 Posts/Month",
+                    "Basic Ad Campaign Setup (1 platform)",
+                    "Monthly Performance Report"
+                  ]}
+                  buttonText="Get Started"
+                  isFeatured={false}
+                />
+                <PricingCard
+                  plan="Growth"
+                  price="750"
+                  features={[
+                    "Advanced Social Media Management",
+                    "2 Platforms (e.g., FB, IG)",
+                    "8 Posts/Month + Stories",
+                    "Optimized Lead Generation Funnel",
+                    "Meta & Google Ads Management",
+                    "Bi-Weekly Performance Calls",
+                    "A/B Testing"
+                  ]}
+                  buttonText="Most Popular"
+                  isFeatured={true}
+                />
+                <PricingCard
+                  plan="Enterprise"
+                  price="Custom"
+                  features={[
+                    "Full-Service Digital Marketing",
+                    "All Major Platforms",
+                    "Unlimited Content Creation",
+                    "Dedicated Lead Nurturing",
+                    "Comprehensive Ad Strategy & Scaling",
+                    "Weekly Strategy Sessions",
+                    "Custom Reporting & Analytics"
+                  ]}
+                  buttonText="Contact for Quote"
+                  isFeatured={false}
+                />
+              </div>
+              <p className="text-gray-400 text-md mt-10">
+                *All prices are in USD. Custom plans available upon request.
+              </p>
+            </div>
+          </section>
+        );
+
+        // Pricing Card Component
+        const PricingCard = ({ plan, price, features, buttonText, isFeatured }) => (
+          <div className={`bg-gray-800 rounded-xl shadow-2xl p-8 flex flex-col justify-between border-2 ${isFeatured ? 'border-purple-600 transform scale-105' : 'border-gray-700'} transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-purple-glow`}>
+            <div>
+              <h3 className="text-3xl font-bold text-white mb-4">{plan}</h3>
+              <p className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-6">
+                {price === "Custom" ? price : `$${price}`}
+                {price !== "Custom" && <span className="text-xl text-gray-400">/month</span>}
+              </p>
+              <ul className="text-gray-300 text-left space-y-3 mb-8">
+                {features.map((feature, index) => (
+                  <li key={index} className="flex items-center">
+                    <svg className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <a
+              href={price === "Custom" ? "#contact" : "#contact"}
+              className={`block w-full text-center py-3 px-6 rounded-full font-bold text-lg transform transition-all duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-4 ${isFeatured
+                ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 focus:ring-purple-500 focus:ring-opacity-75'
+                : 'bg-gray-700 text-gray-200 hover:bg-gray-600 focus:ring-gray-500 focus:ring-opacity-75'
+              }`}
+            >
+              {buttonText}
+            </a>
+          </div>
+        );
+
+        // Contact Section Component
+        const ContactSection = ({ showCustomModal }) => {
+          const [formData, setFormData] = React.useState({
+            name: '',
+            email: '',
+            service: '',
+            message: ''
+          });
+
+          const handleChange = (e) => {
+            const { name, value } = e.target;
+            setFormData(prevState => ({
+              ...prevState,
+              [name]: value
+            }));
+          };
+
+          const handleSubmit = (e) => {
+            e.preventDefault();
+            // Basic validation
+            if (!formData.name || !formData.email || !formData.message) {
+              showCustomModal("Please fill in all required fields.");
+              return;
+            }
+            if (!/\S+@\S+\.\S+/.test(formData.email)) {
+              showCustomModal("Please enter a valid email address.");
+              return;
+            }
+
+            // In a real application, you would send this data to a backend server.
+            // For this example, we'll just log it and show a success message.
+            console.log("Form Data Submitted:", formData);
+            showCustomModal("Thank you for your message! We will get back to you shortly.");
+            setFormData({ name: '', email: '', service: '', message: '' }); // Clear form
+          };
+
+          return (
+            <section id="contact" className="py-20 px-6 md:px-12 bg-gray-900">
+              <div className="container mx-auto text-center">
+                <h2 className="text-4xl md:text-5xl font-bold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-400">
+                  Let's Grow Your Business
+                </h2>
+                <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
+                  Ready to elevate your digital presence? Fill out the form below or reach out directly.
+                </p>
+
+                <div className="max-w-3xl mx-auto bg-gray-800 rounded-xl shadow-2xl p-8 md:p-10 border border-blue-700">
+                  <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <InputField
+                      label="Your Name"
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="John Doe"
+                      required
+                    />
+                    <InputField
+                      label="Your Email"
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="john.doe@example.com"
+                      required
+                    />
+                    <div className="md:col-span-2">
+                      <label htmlFor="service" className="block text-gray-300 text-sm font-bold mb-2 text-left">
+                        Interested Service
+                      </label>
+                      <select
+                        id="service"
+                        name="service"
+                        value={formData.service}
+                        onChange={handleChange}
+                        className="shadow appearance-none border border-gray-700 rounded-md w-full py-3 px-4 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-700 placeholder-gray-400 transition duration-300"
+                      >
+                        <option value="">Select a Service</option>
+                        <option value="Social Media Management">Social Media Management</option>
+                        <option value="Lead Generation">Lead Generation Campaigns</option>
+                        <option value="Meta & Google Ads">Meta & Google Ads</option>
+                        <option value="Custom Plan">Custom Plan / Other</option>
+                      </select>
                     </div>
-                <p id="modal-case-results-text"></p>
-                <blockquote>
-                    <p id="modal-case-testimonial"></p>
-                    <cite id="modal-case-cite"></cite>
-                </blockquote>
-            </div>
-        </div>
-    </div>
+                    <div className="md:col-span-2">
+                      <label htmlFor="message" className="block text-gray-300 text-sm font-bold mb-2 text-left">
+                        Your Message
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows="5"
+                        value={formData.message}
+                        onChange={handleChange}
+                        placeholder="Tell us about your business goals and how we can help..."
+                        className="shadow appearance-none border border-gray-700 rounded-md w-full py-3 px-4 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-700 placeholder-gray-400 transition duration-300 resize-y"
+                        required
+                      ></textarea>
+                    </div>
+                    <div className="md:col-span-2 text-center">
+                      <button
+                        type="submit"
+                        className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition-all duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-75"
+                      >
+                        Send Message
+                      </button>
+                    </div>
+                  </form>
+                  <div className="mt-10 text-center text-gray-400">
+                    <p className="mb-2">Or reach us directly:</p>
+                    <p className="text-lg font-semibold text-white">
+                      Email: <a href="mailto:info@trendsiva.com" className="text-purple-400 hover:underline">info@trendsiva.com</a>
+                    </p>
+                    <p className="text-lg font-semibold text-white">
+                      Phone: <a href="tel:+15551234567" className="text-purple-400 hover:underline">+1 (555) 123-4567</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        };
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    
-    <script src="script.js"></script>
+        // Input Field Component for reusability
+        const InputField = ({ label, type, name, value, onChange, placeholder, required }) => (
+          <div>
+            <label htmlFor={name} className="block text-gray-300 text-sm font-bold mb-2 text-left">
+              {label}
+            </label>
+            <input
+              type={type}
+              id={name}
+              name={name}
+              value={value}
+              onChange={onChange}
+              placeholder={placeholder}
+              className="shadow appearance-none border border-gray-700 rounded-md w-full py-3 px-4 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-700 placeholder-gray-400 transition duration-300"
+              required={required}
+            />
+          </div>
+        );
+
+        // Render the App component into the 'root' div
+        // Use ReactDOM.createRoot for React 18+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+
+    </script>
 </body>
 </html>

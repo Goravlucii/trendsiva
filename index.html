@@ -95,20 +95,14 @@
       }
     </style>
 
-    <!-- Firebase CDNs -->
+    <!-- Firebase CDNs and Initialization -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-  
-        // These global variables are provided by the Canvas environment.
-        // They are used to initialize Firebase and authenticate the user.
-        // IMPORTANT: Replace 'default-app-id' and empty {} with your actual values if not running in Canvas environment
-        // However, since you said "live on google as trendsiva.com", these __app_id and __firebase_config
-        // variables might not be available. You'll need to hardcode your Firebase config here.
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'trendsiva-website'; // Use a consistent app ID for your live site
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-            // *** REPLACE WITH YOUR ACTUAL FIREBASE CONFIG ***
+        
+        // Your actual Firebase configuration (taken from your provided code)
+        const firebaseConfig = {
             apiKey: "AIzaSyBl2SH_PChZrvpuzJAZA8dLtoRIxJhInEs",
             authDomain: "trendsiva-website-data.firebaseapp.com",
             projectId: "trendsiva-website-data",
@@ -116,43 +110,41 @@
             messagingSenderId: "195008342815",
             appId: "1:195008342815:web:cb568dda3537f911ca1e2a",
             measurementId: "G-VZH5QZJV6L"
-            // measurementId: "G-XXXXXXXXXX" // Optional, if you use Analytics
         };
-  
+
+        // Define a consistent app ID for your live site.
+        // This 'trendsiva-website' string will be used in Firestore paths.
+        const appId = 'trendsiva-website'; 
+        
         // Initialize Firebase App
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth(app);
-  
-        // Sign in anonymously or with custom token
+        
+        // Sign in anonymously on page load to allow Firestore writes
         async function authenticateFirebase() {
           try {
-            // If you have a custom token from a backend, use it.
-            // Otherwise, signInAnonymously is simplest for public forms.
-            // For a live site, __initial_auth_token is unlikely to be present.
-            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-              await signInWithCustomToken(auth, __initial_auth_token);
-              console.log("Firebase signed in with custom token.");
-            } else {
-              await signInAnonymously(auth);
-              console.log("Firebase signed in anonymously.");
-            }
+            // For a live site, __initial_auth_token is not usually available.
+            // We're using signInAnonymously to allow public writes to Firestore.
+            await signInAnonymously(auth);
+            console.log("Firebase signed in anonymously.");
           } catch (error) {
             console.error("Firebase authentication error:", error);
           }
         }
-  
+        
         // Call authentication function
         authenticateFirebase();
-  
-        // Make db, auth, and appId globally accessible for the React script
+        
+        // Make db, auth, appId, addDoc, and collection globally accessible
+        // This is crucial because your React code is in a separate Babel script block.
         window.firebaseApp = app;
         window.firebaseDb = db;
         window.firebaseAuth = auth;
-        window.firebaseAppId = appId; // Expose the app ID you defined
-        window.addDoc = addDoc; // Make addDoc globally available
-        window.collection = collection; // Make collection globally available
-      </script>
+        window.firebaseAppId = appId; 
+        window.addDoc = addDoc; 
+        window.collection = collection; 
+    </script>
 
 </head>
 <body class="bg-gray-950">
@@ -363,6 +355,18 @@
                   icon="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10a2 2 0 01-2 2h-2a2 2 0 01-2-2zm9 0V5a2 2 0 00-2-2h-2a2 2 0 00-2 2v14a2 2 0 002 2h2a2 2 0 002-2z"
                   title="Meta & Google Ads"
                   description="Maximizing your ROI with expertly managed ad campaigns on Facebook, Instagram, and Google, delivering results at the lowest cost."
+                />
+                {/* New Service Card: E-commerce Development & Online Sales */}
+                <ServiceCard
+                  icon="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  title="E-commerce & Online Sales"
+                  description="Building high-converting online stores and implementing strategies to maximize product visibility, customer engagement, and direct sales revenue."
+                />
+                {/* New Service Card: Website Development */}
+                <ServiceCard
+                  icon="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                  title="Custom Website Development"
+                  description="Designing and developing responsive, user-friendly websites on platforms like Shopify, WordPress, and Wix, tailored to your brand's unique needs."
                 />
               </div>
             </div>
@@ -676,166 +680,166 @@
           </div>
         );
 
-// Contact Section Component
-const ContactSection = ({ showCustomModal }) => {
-    const [formData, setFormData] = React.useState({
-      name: '',
-      email: '',
-      service: '',
-      message: ''
-    });
-    const [isSubmitting, setIsSubmitting] = React.useState(false); // Add this state
+        // Contact Section Component
+        const ContactSection = ({ showCustomModal }) => {
+          const [formData, setFormData] = React.useState({
+            name: '',
+            email: '',
+            service: '',
+            message: ''
+          });
+          const [isSubmitting, setIsSubmitting] = React.useState(false);
 
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData(prevState => ({
-        ...prevState,
-        [name]: value
-      }));
-    };
+          const handleChange = (e) => {
+            const { name, value } = e.target;
+            setFormData(prevState => ({
+              ...prevState,
+              [name]: value
+            }));
+          };
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      setIsSubmitting(true); // Set submitting state to true
+          const handleSubmit = async (e) => {
+            e.preventDefault();
+            setIsSubmitting(true);
 
-      // Basic validation
-      if (!formData.name || !formData.email || !formData.message) {
-        showCustomModal("Please fill in all required fields.");
-        setIsSubmitting(false); // Reset submitting state
-        return;
-      }
-      if (!/\S+@\S+\.\S+/.test(formData.email)) {
-        showCustomModal("Please enter a valid email address.");
-        setIsSubmitting(false); // Reset submitting state
-        return;
-      }
+            // Basic validation
+            if (!formData.name || !formData.email || !formData.message) {
+              showCustomModal("Please fill in all required fields.");
+              setIsSubmitting(false);
+              return;
+            }
+            if (!/\S+@\S+\.\S+/.test(formData.email)) {
+              showCustomModal("Please enter a valid email address.");
+              setIsSubmitting(false);
+              return;
+            }
 
-      try {
-        // Access Firebase instances from the global window object
-        const db = window.firebaseDb;
-        const auth = window.firebaseAuth;
-        const appId = window.firebaseAppId; // Your defined app ID
+            try {
+              // Access Firebase instances from the global window object
+              const db = window.firebaseDb;
+              const auth = window.firebaseAuth;
+              const appId = window.firebaseAppId; // Your defined app ID
 
-        // Ensure Firebase is initialized and authenticated before attempting to save
-        if (!db || !auth || !auth.currentUser) {
-          console.error("Firebase not initialized or user not authenticated.");
-          showCustomModal("Error: Firebase is not ready. Please try again.");
-          setIsSubmitting(false);
-          return;
-        }
+              // Ensure Firebase is initialized and authenticated before attempting to save
+              if (!db || !auth || !auth.currentUser) {
+                console.error("Firebase not initialized or user not authenticated.");
+                showCustomModal("Error: Firebase is not ready. Please try again.");
+                setIsSubmitting(false);
+                return;
+              }
 
-        const userId = auth.currentUser?.uid || crypto.randomUUID(); // Use authenticated UID or a random one
+              const userId = auth.currentUser?.uid || crypto.randomUUID(); // Use authenticated UID or a random one
 
-        // Define the Firestore collection path for public data
-        // This path should match your Firestore Security Rules
-        const collectionRef = window.collection(db, `artifacts/${appId}/public/data/formSubmissions`);
+              // Define the Firestore collection path for public data
+              // This path should match your Firestore Security Rules
+              const collectionRef = window.collection(db, `artifacts/${appId}/public/data/formSubmissions`);
 
-        // Add the form data to Firestore
-        await window.addDoc(collectionRef, {
-          ...formData,
-          userId: userId,
-          timestamp: new Date().toISOString(), // Add a timestamp for when the form was submitted
-        });
+              // Add the form data to Firestore
+              await window.addDoc(collectionRef, {
+                ...formData,
+                userId: userId,
+                timestamp: new Date().toISOString(), // Add a timestamp for when the form was submitted
+              });
 
-        console.log("Form Data Submitted to Firestore:", formData);
-        showCustomModal("Thank you for your message! We will get back to you shortly.");
-        setFormData({ name: '', email: '', service: '', message: '' }); // Clear form
+              console.log("Form Data Submitted to Firestore:", formData);
+              showCustomModal("Thank you for your message! We will get back to you shortly.");
+              setFormData({ name: '', email: '', service: '', message: '' }); // Clear form
 
-      } catch (error) {
-        console.error("Error submitting form to Firebase:", error);
-        showCustomModal("There was an error sending your message. Please try again later.");
-      } finally {
-        setIsSubmitting(false); // Always reset submitting state
-      }
-    };
+            } catch (error) {
+              console.error("Error submitting form to Firebase:", error);
+              showCustomModal("There was an error sending your message. Please try again later.");
+            } finally {
+              setIsSubmitting(false); // Always reset submitting state
+            }
+          };
 
-    return (
-      <section id="contact" className="py-20 px-6 md:px-12 bg-gray-900">
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-400">
-            Let's Grow Your Business
-          </h2>
-          <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
-            Ready to elevate your digital presence? Fill out the form below or reach out directly.
-          </p>
+          return (
+            <section id="contact" className="py-20 px-6 md:px-12 bg-gray-900">
+              <div className="container mx-auto text-center">
+                <h2 className="text-4xl md:text-5xl font-bold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-400">
+                  Let's Grow Your Business
+                </h2>
+                <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
+                  Ready to elevate your digital presence? Fill out the form below or reach out directly.
+                </p>
 
-          <div className="max-w-3xl mx-auto bg-gray-800 rounded-xl shadow-2xl p-8 md:p-10 border border-blue-700">
-            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <InputField
-                label="Your Name"
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="John Doe"
-                required
-              />
-              <InputField
-                label="Your Email"
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="john.doe@example.com"
-                required
-              />
-              <div className="md:col-span-2">
-                <label htmlFor="service" className="block text-gray-300 text-sm font-bold mb-2 text-left">
-                  Interested Service
-                </label>
-                <select
-                  id="service"
-                  name="service"
-                  value={formData.service}
-                  onChange={handleChange}
-                  className="shadow appearance-none border border-gray-700 rounded-md w-full py-3 px-4 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-700 placeholder-gray-400 transition duration-300"
-                >
-                  <option value="">Select a Service</option>
-                  <option value="Social Media Management">Social Media Management</option>
-                  <option value="Lead Generation">Lead Generation Campaigns</option>
-                  <option value="Meta & Google Ads">Meta & Google Ads</option>
-                  <option value="Custom Plan">Custom Plan / Other</option>
-                </select>
+                <div className="max-w-3xl mx-auto bg-gray-800 rounded-xl shadow-2xl p-8 md:p-10 border border-blue-700">
+                  <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <InputField
+                      label="Your Name"
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="John Doe"
+                      required
+                    />
+                    <InputField
+                      label="Your Email"
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="john.doe@example.com"
+                      required
+                    />
+                    <div className="md:col-span-2">
+                      <label htmlFor="service" className="block text-gray-300 text-sm font-bold mb-2 text-left">
+                        Interested Service
+                      </label>
+                      <select
+                        id="service"
+                        name="service"
+                        value={formData.service}
+                        onChange={handleChange}
+                        className="shadow appearance-none border border-gray-700 rounded-md w-full py-3 px-4 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-700 placeholder-gray-400 transition duration-300"
+                      >
+                        <option value="">Select a Service</option>
+                        <option value="Social Media Management">Social Media Management</option>
+                        <option value="Lead Generation">Lead Generation Campaigns</option>
+                        <option value="Meta & Google Ads">Meta & Google Ads</option>
+                        <option value="Custom Plan">Custom Plan / Other</option>
+                      </select>
+                    </div>
+                    <div className="md:col-span-2">
+                      <label htmlFor="message" className="block text-gray-300 text-sm font-bold mb-2 text-left">
+                        Your Message
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows="5"
+                        value={formData.message}
+                        onChange={handleChange}
+                        placeholder="Tell us about your business goals and how we can help..."
+                        className="shadow appearance-none border border-gray-700 rounded-md w-full py-3 px-4 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-700 placeholder-gray-400 transition duration-300 resize-y"
+                        required
+                      ></textarea>
+                    </div>
+                    <div className="md:col-span-2 text-center">
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className={`bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-75 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:from-purple-700 hover:to-pink-700 hover:scale-105'}`}
+                      >
+                        {isSubmitting ? 'Sending...' : 'Send Message'}
+                      </button>
+                    </div>
+                  </form>
+                  <div className="mt-10 text-center text-gray-400">
+                    <p className="mb-2">Or reach us directly:</p>
+                    <p className="text-lg font-semibold text-white">
+                      Email: <a href="mailto:info@trendsiva.com" className="text-purple-400 hover:underline">info@trendsiva.com</a>
+                    </p>
+                    <p className="text-lg font-semibold text-white">
+                      Phone: <a href="tel:+15551234567" className="text-purple-400 hover:underline">+1 (555) 123-4567</a>
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className="md:col-span-2">
-                <label htmlFor="message" className="block text-gray-300 text-sm font-bold mb-2 text-left">
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Tell us about your business goals and how we can help..."
-                  className="shadow appearance-none border border-gray-700 rounded-md w-full py-3 px-4 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 bg-gray-700 placeholder-gray-400 transition duration-300 resize-y"
-                  required
-                ></textarea>
-              </div>
-              <div className="md:col-span-2 text-center">
-                <button
-                  type="submit"
-                  disabled={isSubmitting} // Disable button during submission
-                  className={`bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-75 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:from-purple-700 hover:to-pink-700 hover:scale-105'}`}
-                >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
-                </button>
-              </div>
-            </form>
-            <div className="mt-10 text-center text-gray-400">
-              <p className="mb-2">Or reach us directly:</p>
-              <p className="text-lg font-semibold text-white">
-                Email: <a href="mailto:contact@trendsiva.com" className="text-purple-400 hover:underline">contact@trendsiva.com</a>
-              </p>
-              <p className="text-lg font-semibold text-white">
-                Phone: <a href="https://www.linkedin.com/company/trendsiva" className="text-purple-400 hover:underline">LinkedIn</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  };
+            </section>
+          );
+        };
 
         // Input Field Component for reusability
         const InputField = ({ label, type, name, value, onChange, placeholder, required }) => (
